@@ -7,7 +7,7 @@ var Player: Node2D
 
 var last_position = position
 
-var direction = 0
+var direction: Vector2 = Vector2.ZERO
 var is_facing_left:bool = false
 var is_hitting_player:bool = false
 

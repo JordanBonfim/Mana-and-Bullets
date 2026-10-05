@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bskrtlj4ec1fy"]
+
+[ext_resource type="Script" uid="uid://bjme2o5fb25j3" path="res://Enemy/ultra_mage/ultra_mage.gd" id="1_g4aj1"]
+[ext_resource type="Texture2D" uid="uid://bthagub6igi1b" path="res://Enemy/cyan_slime/sprites/cyan_slime.png" id="2_8680d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjk5h"]
+size = Vector2(20, 30)
+
+[sub_resource type="Animation" id="Animation_i7gww"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100000024, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(5.2780347, 1.0352658, 5.2780347, 5.2780347, 5.2780347, 5.2780347, 5.2780347, 5.2780347),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_p8c4f"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100000024, 0.19999999, 0.3, 0.40000004, 0.49999994, 0.6000001, 0.7),
+"transitions": PackedFloat32Array(5.2780347, 1.0352658, 5.2780347, 5.2780347, 5.2780347, 5.2780347, 5.2780347, 5.2780347),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i64ad"]
+_data = {
+&"RESET": SubResource("Animation_i7gww"),
+&"walk": SubResource("Animation_p8c4f")
+}
+
+[node name="CyanSlime" type="CharacterBody2D" unique_id=342270267]
+scale = Vector2(4, 4)
+script = ExtResource("1_g4aj1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=538671649]
+texture = ExtResource("2_8680d")
+hframes = 10
+vframes = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1403552380]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_sjk5h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1990479551]
+libraries/ = SubResource("AnimationLibrary_i64ad")

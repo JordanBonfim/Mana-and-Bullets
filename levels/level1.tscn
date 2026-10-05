@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bmwl7jq3ijyca" path="res://background/tilemap2.png" id="1_sjb42"]
 [ext_resource type="PackedScene" uid="uid://7ap4afqyu0nh" path="res://player/Player.tscn" id="2_pdtm5"]
 [ext_resource type="PackedScene" uid="uid://cpb0clokm4i7r" path="res://enemy_spawner/Enemy_spawner.tscn" id="3_b3oru"]
-[ext_resource type="PackedScene" uid="uid://c3ixwmpe3bgoe" path="res://Enemy/ultra_mage/ultra_mage.tscn" id="4_ua5ty"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdtm5"]
 texture = ExtResource("1_sjb42")
@@ -187,5 +186,4 @@ position = Vector2(20, 23)
 scale = Vector2(4, 4)
 
 [node name="EnemySpawner" parent="." unique_id=1349388475 node_paths=PackedStringArray("target") instance=ExtResource("3_b3oru")]
-enemy_prefab = ExtResource("4_ua5ty")
 target = NodePath("../Player")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cpb0clokm4i7r"]
 
 [ext_resource type="Script" uid="uid://bb7bgn63h7lk2" path="res://enemy_spawner/enemy_spawner.gd" id="1_6b7u1"]
-[ext_resource type="PackedScene" uid="uid://c3ixwmpe3bgoe" path="res://Enemy/ultra_mage/ultra_mage.tscn" id="2_bh0xy"]
+[ext_resource type="PackedScene" uid="uid://bskrtlj4ec1fy" path="res://Enemy/cyan_slime/cyan_slime.tscn" id="2_bh0xy"]
 
 [node name="EnemySpawner" type="Node2D" unique_id=1349388475]
 script = ExtResource("1_6b7u1")
