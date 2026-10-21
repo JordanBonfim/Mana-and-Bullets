@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c1jarv1c2wevn"]
+
+[ext_resource type="Script" uid="uid://dsi7dwrio2pp5" path="res://weapons/shotgun/projectile/bullet.gd" id="1_fymuc"]
+[ext_resource type="Texture2D" uid="uid://vjb54xvck2j6" path="res://weapons/shotgun/projectile/bullet.png" id="2_w6phj"]
+
+[sub_resource type="Gradient" id="Gradient_sjk5h"]
+offsets = PackedFloat32Array(0.01724138, 1)
+colors = PackedColorArray(1, 0.43333334, 0, 1, 1, 0.76, 0.04000002, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kpb6"]
+size = Vector2(32, 8)
+
+[node name="Bullet" type="Node2D" unique_id=1366979729 node_paths=PackedStringArray("timer")]
+script = ExtResource("1_fymuc")
+timer = NodePath("bullet_lifetime")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=841928379]
+position = Vector2(-14, 0)
+amount = 102
+lifetime = 0.12
+explosiveness = 0.01
+randomness = 0.56
+emission_shape = 1
+emission_sphere_radius = 6.08
+gravity = Vector2(0, 500)
+scale_amount_min = 0.0
+scale_amount_max = 2.0
+color = Color(1, 0.3645, 0.06999999, 1)
+color_ramp = SubResource("Gradient_sjk5h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1147292905]
+scale = Vector2(4, 4)
+texture = ExtResource("2_w6phj")
+
+[node name="bullet_lifetime" type="Timer" parent="." unique_id=601511423]
+
+[node name="hurt_box" type="Area2D" parent="." unique_id=1921300258]
+collision_layer = 32
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box" unique_id=791447500]
+shape = SubResource("RectangleShape2D_2kpb6")
+
+[connection signal="timeout" from="bullet_lifetime" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="hurt_box" to="." method="_on_hurt_box_body_entered"]

@@ -3,6 +3,18 @@ extends Node2D
 @export var enemy_prefab : PackedScene
 @export var target : Node2D
 @onready var timer: Timer = $Timer
+const CYAN_SLIME = preload("uid://bskrtlj4ec1fy")
+"res://Enemy/cyan_slime/cyan_slime.tscn"
+@export var cyan_slime: PackedScene
+@export var ultra_mage: PackedScene
+
+#region DIFICULTY CONFIG
+
+@export var wave_number : int = 1
+
+
+#endregion 
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,9 +40,13 @@ func _unhandled_input(event):
 #func _process(delta: float) -> void:
 #	pass
 
+func spawn_slime() -> void:
+	var enemy = cyan_slime.instantiate()
+
+
 func _on_timer_timeout() -> void:
 	
-	var enemy = enemy_prefab.instantiate()
+	var enemy = cyan_slime.instantiate()
 	enemy.Player = target
 	add_child(enemy)
 	

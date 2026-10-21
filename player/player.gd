@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 #region PLAYER STATS
-var player_is_facing_left:bool = true
+var player_is_facing_left:bool = false
 
 var hp: float = 100:
 	set(value):
@@ -15,6 +15,8 @@ var max_hp:float = 100 :
 		Messages.player_health_changed.emit(hp, max_hp)
 	
 const SPEED = 300.0
+var fire_cooldown:float = 0.5
+
 
 #endregion
 
@@ -67,11 +69,11 @@ func _physics_process(delta: float) -> void:
 	if get_global_mouse_position().x < global_position.x:
 		if not player_is_facing_left:
 			player_is_facing_left = true
-			scale.x = -scale.x
+			#scale.x = -scale.x
 	else:
 		if player_is_facing_left:
 			player_is_facing_left = false
-			scale.x = -scale.x
+			#scale.x = -scale.x
 			
 	if x_direction:
 		velocity.x = x_direction * SPEED

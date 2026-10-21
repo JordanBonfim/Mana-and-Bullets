@@ -7,14 +7,16 @@ var Player: Node2D
 
 var last_position = position
 
-var direction = 0
+var direction: Vector2 = Vector2.ZERO
 var is_facing_left:bool = false
 var is_hitting_player:bool = false
 
+
+
 #region ENEMY STATS
 
-var hp: float = 100
-var max_hp: float = 100
+var hp: float = 20
+var max_hp: float = 20
 var damage_to_player: float = 5
 
 #endregion
@@ -41,6 +43,8 @@ func _unhandled_input(event):
 			queue_free()
 	
 func _physics_process(delta: float) -> void:
+	if(hp<=0):
+		queue_free()
 	
 	#if $AnimationPlayer.current_animation == "Punch":
 	#	return
@@ -76,9 +80,30 @@ func walk () -> void :
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
 	#$AnimationPlayer.play("punch")
+	print("relou no player")
 	Player.set_player_health(Player.hp-damage_to_player)
 	
 
 
 func _on_attack_detector_body_entered(body: Node2D) -> void:
 	get_tree().reload_current_scene()
+
+
+#func _on_area_2d_body_entered(body: Node2D) -> void:
+	# FUNÇÃO PRA QUANDO O TIRO ATINGE O INIMIGO
+	#print("bala chegou aqui bicho")
+	#if():
+	
+
+	
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	
+	if(area.get_parent().has_method("get_bullet_damage")):
+		
+		var node = area.get_parent() as Node
+		hp -= node.get_bullet_damage()
+		print("enemy hp:",hp)
+		
+		

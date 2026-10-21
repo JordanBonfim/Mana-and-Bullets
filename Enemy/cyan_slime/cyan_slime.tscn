@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bskrtlj4ec1fy"]
 
-[ext_resource type="Script" uid="uid://bjme2o5fb25j3" path="res://Enemy/ultra_mage/ultra_mage.gd" id="1_g4aj1"]
+[ext_resource type="Script" uid="uid://b5fymakj1jkqp" path="res://Enemy/cyan_slime/cyan_slime.gd" id="1_8680d"]
 [ext_resource type="Texture2D" uid="uid://bthagub6igi1b" path="res://Enemy/cyan_slime/sprites/cyan_slime.png" id="2_8680d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sjk5h"]
-size = Vector2(20, 30)
+size = Vector2(22.75, 20)
 
 [sub_resource type="Animation" id="Animation_i7gww"]
 length = 0.8
@@ -47,16 +47,29 @@ _data = {
 
 [node name="CyanSlime" type="CharacterBody2D" unique_id=342270267]
 scale = Vector2(4, 4)
-script = ExtResource("1_g4aj1")
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_8680d")
+
+[node name="colision_shape" type="CollisionShape2D" parent="." unique_id=1880515938]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_sjk5h")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=538671649]
 texture = ExtResource("2_8680d")
 hframes = 10
 vframes = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1403552380]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_sjk5h")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1990479551]
 libraries/ = SubResource("AnimationLibrary_i64ad")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=590398513]
+collision_layer = 4
+collision_mask = 32
+
+[node name="hurt_box" type="CollisionShape2D" parent="Area2D" unique_id=1403552380]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_sjk5h")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
