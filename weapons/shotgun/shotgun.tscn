@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://dma1ga5m88jpj"]
 
 [ext_resource type="Texture2D" uid="uid://c0k7lsahhprnw" path="res://weapons/shotgun/shotgun.png" id="1_0kfn4"]
+[ext_resource type="PackedScene" uid="uid://bydsdrw2x4pf1" path="res://weapons/shotgun/projectile/Bullet_smoke.tscn" id="2_apfrx"]
 [ext_resource type="Script" uid="uid://deu8unoncdi3y" path="res://weapons/shotgun/shotgun.gd" id="2_rxqsx"]
 
 [node name="Shotgun" type="Node2D" unique_id=1305605320]
 visibility_layer = 8
 script = ExtResource("2_rxqsx")
+smokeScene = ExtResource("2_apfrx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=870953946]
 position = Vector2(6, -1)

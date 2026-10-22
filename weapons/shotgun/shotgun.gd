@@ -3,6 +3,7 @@ extends Node2D
 
 @export var ready_to_fire = true
 @export var fire_delay_seconds:float = 0.4
+@export var smokeScene : PackedScene
 
 @onready var muzzle: Marker2D = $muzzle
 @onready var fire_cooldown: Timer = $fire_cooldown
@@ -41,6 +42,11 @@ func _physics_process(_delta: float) -> void:
 			get_tree().root.add_child(bullet_instance)
 			bullet_instance.global_position = muzzle.global_position
 			bullet_instance.rotation = rotation
+			
+			var smoke = smokeScene.instantiate() as GPUParticles2D
+			get_parent().add_child(smoke)
+			smoke.global_position = muzzle.global_position
+			smoke.rotation = rotation
 
 func _on_fire_cooldown_timeout() -> void:
 	ready_to_fire = true
