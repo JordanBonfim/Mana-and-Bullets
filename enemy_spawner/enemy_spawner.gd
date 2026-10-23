@@ -23,17 +23,17 @@ func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
 		
 		if event.keycode == KEY_2:
-			print("timout:", timer.wait_time)
+			#print("timout:", timer.wait_time)
 			timer.wait_time-=0.2
 		elif event.keycode == KEY_3:
-			print("timout:", timer.wait_time)
+			#print("timout:", timer.wait_time)
 			timer.wait_time+=0.2
 		
 		elif event.keycode == KEY_5:
-			print("timer paused:", timer.paused)
+			#print("timer paused:", timer.paused)
 			timer.paused = true	
 		elif event.keycode == KEY_6:
-			print("timer paused:", timer.paused)
+			#print("timer paused:", timer.paused)
 			timer.paused = false	
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -31,7 +31,7 @@ func _ready() -> void:
 	
 	var raio:int = sqrt(pow(half.x,2)+pow(half.y,2))
 	var angulo:int = random.randi() % 360
-	print("Angulo:", angulo)
+	#print("Angulo:", angulo)
 	
 	position.y = Player.global_position.y + raio*sin(angulo)
 	position.x = Player.global_position.x + raio*cos(angulo)
@@ -80,7 +80,7 @@ func walk () -> void :
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
 	#$AnimationPlayer.play("punch")
-	print("relou no player")
+	#print("relou no player")
 	Player.set_player_health(Player.hp-damage_to_player)
 	
 
@@ -104,6 +104,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		
 		var node = area.get_parent() as Node
 		hp -= node.get_bullet_damage()
-		print("enemy hp:",hp)
+		#print("enemy hp:",hp)
 		
 		

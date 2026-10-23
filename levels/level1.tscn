@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cpb0clokm4i7r" path="res://enemy_spawner/Enemy_spawner.tscn" id="3_b3oru"]
 [ext_resource type="PackedScene" uid="uid://bskrtlj4ec1fy" path="res://Enemy/cyan_slime/cyan_slime.tscn" id="4_ua5ty"]
 [ext_resource type="PackedScene" uid="uid://c3ixwmpe3bgoe" path="res://Enemy/ultra_mage/ultra_mage.tscn" id="5_61w3m"]
+[ext_resource type="PackedScene" uid="uid://dqvoafn6r7d0l" path="res://00_global/player_hud/hud.tscn" id="6_pdpul"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdtm5"]
 texture = ExtResource("1_sjb42")
@@ -191,3 +192,5 @@ scale = Vector2(4, 4)
 target = NodePath("../Player")
 cyan_slime = ExtResource("4_ua5ty")
 ultra_mage = ExtResource("5_61w3m")
+
+[node name="Hud" parent="." unique_id=1555987361 instance=ExtResource("6_pdpul")]

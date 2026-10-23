@@ -15,7 +15,6 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			shoot()
 
-
 func shoot() -> void:
 	if not ready_to_fire:
 		return

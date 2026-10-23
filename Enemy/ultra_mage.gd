@@ -29,7 +29,7 @@ func _ready() -> void:
 	
 	var raio:int = sqrt(pow(half.x,2)+pow(half.y,2))
 	var angulo:int = random.randi() % 360
-	print("Angulo:", angulo)
+	#print("Angulo:", angulo)
 	
 	position.y = Player.global_position.y + raio*sin(angulo)
 	position.x = Player.global_position.x + raio*cos(angulo)

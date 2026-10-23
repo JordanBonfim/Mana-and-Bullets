@@ -21,6 +21,9 @@ var fire_cooldown:float = 0.5
 #endregion
 
 
+
+@export var smokeScene : PackedScene
+
 @onready var timer: Timer = $Timer
 
 func _ready() -> void:
@@ -44,7 +47,8 @@ func _unhandled_input(event):
 			else:
 				print("LIFE:", hp)
 				hp+=2
-
+		elif event.keycode == KEY_9:
+			Messages.increase_wave.emit(1)
 		
 			
 	#if event is InputEventMouseButton and event.pressed:
