@@ -184,16 +184,17 @@ tile_set = SubResource("TileSet_sjk5h")
 
 [node name="MainMenu" type="VBoxContainer" parent="Control" unique_id=1956770569]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -188.25
-offset_top = -141.5
-offset_right = 188.25
-offset_bottom = 141.5
+offset_left = -124.5
+offset_top = -113.5
+offset_right = 124.5
+offset_bottom = 113.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -202,3 +203,64 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 text = "Play"
+
+[node name="SettingsButton" type="Button" parent="Control/MainMenu" unique_id=707723187]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings
+"
+
+[node name="SettingsMenu" type="VBoxContainer" parent="Control" unique_id=1324869122]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.5
+offset_top = -113.5
+offset_right = 124.5
+offset_bottom = 113.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="BackToMainMenuButton" type="Button" parent="Control/SettingsMenu" unique_id=925245521]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Go back to menu
+"
+
+[node name="Hbox" type="HBoxContainer" parent="Control/SettingsMenu" unique_id=2099222132]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/SettingsMenu/Hbox" unique_id=394981977]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Window mode:"
+
+[node name="WindowModeButton" type="Button" parent="Control/SettingsMenu/Hbox" unique_id=1727978281]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Windowed"
+
+[node name="WindowModeOptions" type="OptionButton" parent="Control/SettingsMenu/Hbox" unique_id=2030706039]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Hbox2" type="HBoxContainer" parent="Control/SettingsMenu" unique_id=509406744]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/SettingsMenu/Hbox2" unique_id=671441610]
+layout_mode = 2
+text = "Resolution:"
+
+[node name="ResolutionOptions" type="OptionButton" parent="Control/SettingsMenu/Hbox2" unique_id=1141116724]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
