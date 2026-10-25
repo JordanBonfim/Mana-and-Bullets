@@ -3,6 +3,7 @@ extends CharacterBody2D
 #region PLAYER STATS
 var player_is_facing_left:bool = false
 
+# Life
 var hp: float = 100:
 	set(value):
 		hp = clampf(value, 0, max_hp) 
@@ -14,17 +15,28 @@ var max_hp:float = 100 :
 		max_hp = value 
 		Messages.player_health_changed.emit(hp, max_hp)
 	
-const SPEED = 300.0
-var fire_cooldown:float = 0.5
+# Speed
+@export var SPEED = 300.0
+
+# Damage
+@export var fire_cooldown:float = 0.5
+
+# Xp
+@export var player_level: int  = 1
+@export var player_xp: int  = 0
+@export var max_level: int = 100
+@export var base_xp: int = 100
+@export var growth_factor: float = 1.12
+@export var quadratic_multiplier: float = 1.0
+
 
 
 #endregion
 
-
-
 @export var smokeScene : PackedScene
-
 @onready var timer: Timer = $Timer
+
+
 
 func _ready() -> void:
 	#$AnimatedSprite2D.play("idle_main")
@@ -49,6 +61,13 @@ func _unhandled_input(event):
 				hp+=2
 		elif event.keycode == KEY_9:
 			Messages.increase_wave.emit(1)
+		
+		elif event.keycode == KEY_E:
+			print("ADICIONANDO 10 DE XP")
+			print("PLAYER XP  ", player_xp)
+			print("PLAYER LEVEL  ", player_level)
+			print("XP TO NEXT LEVEL  ", xp_to_next_level(player_level))
+			add_xp(10)
 		
 			
 	#if event is InputEventMouseButton and event.pressed:
@@ -97,3 +116,41 @@ func set_player_health(health : float) -> void:
 	#if(hp <= 0):
 	#	print("vida zerada")
    
+
+func _check_level_up() -> void:
+	var levels_gained := 0
+	
+	while player_xp >= xp_to_next_level(player_level) and player_level < max_level:
+		var xp_required = xp_to_next_level(player_level)
+		player_xp -= xp_required
+		player_level += 1
+		levels_gained += 1
+		print("emitindo com: player_xp",player_xp)
+		print("emitindo com: xp_to_next_level",player_level)
+		Messages.leveled_up.emit(player_xp, xp_to_next_level(player_level))
+	if(levels_gained > 1 ):
+		Messages.leveled_up.emit(player_level, levels_gained)
+	Messages.xp_changed.emit(player_xp, xp_to_next_level(player_level ))
+	
+	
+func add_xp(ammount: int) -> void:
+	if ammount <= 0:
+		return
+	player_xp += ammount
+	Messages.xp_changed.emit(player_xp, xp_to_next_level(player_level))
+	_check_level_up()
+	
+	
+
+func xp_to_next_level(level:int) -> int:
+	if level < 1:
+		level = 1
+	
+	var xp = base_xp * pow(level,2) * pow(growth_factor, level - 1) * quadratic_multiplier
+	return int(round(xp))
+
+func total_xp_for_level(target_level: int) -> int:
+	var total := 0
+	for i in range(1, target_level):
+		total += xp_to_next_level(i)
+	return total
