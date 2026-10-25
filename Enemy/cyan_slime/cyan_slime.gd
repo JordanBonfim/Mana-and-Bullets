@@ -15,13 +15,18 @@ var is_hitting_player:bool = false
 
 #region ENEMY STATS
 
-var hp: float = 20
-var max_hp: float = 20
+var hp: float = 10
+var max_hp: float = 10
 var damage_to_player: float = 5
 
 #endregion
 
 var random = RandomNumberGenerator.new()
+
+@onready var death_soundplayer: AudioStreamPlayer = $death_soundplayer
+@onready var hurt_box: CollisionShape2D = $Area2D/hurt_box
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
 
 func _ready() -> void:
 	$AnimationPlayer.play("walk")
@@ -43,8 +48,7 @@ func _unhandled_input(event):
 			queue_free()
 	
 func _physics_process(delta: float) -> void:
-	if(hp<=0):
-		queue_free()
+	
 	
 	#if $AnimationPlayer.current_animation == "Punch":
 	#	return
@@ -89,21 +93,21 @@ func _on_attack_detector_body_entered(body: Node2D) -> void:
 	get_tree().reload_current_scene()
 
 
-#func _on_area_2d_body_entered(body: Node2D) -> void:
-	# FUNÇÃO PRA QUANDO O TIRO ATINGE O INIMIGO
-	#print("bala chegou aqui bicho")
-	#if():
-	
 
-	
-
-
+# FUNÇÃO PRA QUANDO O TIRO ATINGE O INIMIGO
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	
 	if(area.get_parent().has_method("get_bullet_damage")):
 		
 		var node = area.get_parent() as Node
 		hp -= node.get_bullet_damage()
+		if(hp<=0):
+			hurt_box.disabled = true
+			sprite_2d.visible = false
+			death_soundplayer.play()
+			await death_soundplayer.finished
+			queue_free()
 		#print("enemy hp:",hp)
 		
-		
+# @onready var hurt_box: CollisionShape2D = $Area2D/hurt_box
+# @onready var sprite_2d: Sprite2D = $Sprite2D

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5fymakj1jkqp" path="res://Enemy/cyan_slime/cyan_slime.gd" id="1_8680d"]
 [ext_resource type="Texture2D" uid="uid://bthagub6igi1b" path="res://Enemy/cyan_slime/sprites/cyan_slime.png" id="2_8680d"]
+[ext_resource type="AudioStream" uid="uid://bsldk830wpmpu" path="res://Audio/slime_kill.wav" id="3_y1nu5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sjk5h"]
 size = Vector2(22.75, 20)
@@ -70,6 +71,10 @@ collision_mask = 32
 [node name="hurt_box" type="CollisionShape2D" parent="Area2D" unique_id=1403552380]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_sjk5h")
+
+[node name="death_soundplayer" type="AudioStreamPlayer" parent="." unique_id=1115558541]
+stream = ExtResource("3_y1nu5")
+volume_db = -12.772
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

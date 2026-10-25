@@ -1,11 +1,13 @@
 [gd_scene format=4 uid="uid://bpmnpjikgp7rg"]
 
+[ext_resource type="Script" uid="uid://bohj6atd3kj7u" path="res://levels/level_1.gd" id="1_045es"]
 [ext_resource type="Texture2D" uid="uid://bmwl7jq3ijyca" path="res://background/tilemap2.png" id="1_sjb42"]
 [ext_resource type="PackedScene" uid="uid://7ap4afqyu0nh" path="res://player/Player.tscn" id="2_pdtm5"]
 [ext_resource type="PackedScene" uid="uid://cpb0clokm4i7r" path="res://enemy_spawner/Enemy_spawner.tscn" id="3_b3oru"]
 [ext_resource type="PackedScene" uid="uid://bskrtlj4ec1fy" path="res://Enemy/cyan_slime/cyan_slime.tscn" id="4_ua5ty"]
 [ext_resource type="PackedScene" uid="uid://c3ixwmpe3bgoe" path="res://Enemy/ultra_mage/ultra_mage.tscn" id="5_61w3m"]
 [ext_resource type="PackedScene" uid="uid://dqvoafn6r7d0l" path="res://00_global/player_hud/hud.tscn" id="6_pdpul"]
+[ext_resource type="AudioStream" uid="uid://wuhg8mcwc5bq" path="res://Audio/rock2.wav" id="7_8hd6v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdtm5"]
 texture = ExtResource("1_sjb42")
@@ -178,6 +180,7 @@ texture = ExtResource("1_sjb42")
 sources/0 = SubResource("TileSetAtlasSource_pdtm5")
 
 [node name="Level1" type="Node2D" unique_id=973362317]
+script = ExtResource("1_045es")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1975934623]
 scale = Vector2(2, 2)
@@ -194,3 +197,10 @@ cyan_slime = ExtResource("4_ua5ty")
 ultra_mage = ExtResource("5_61w3m")
 
 [node name="Hud" parent="." unique_id=1555987361 instance=ExtResource("6_pdpul")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=640764196]
+stream = ExtResource("7_8hd6v")
+volume_db = -23.854
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

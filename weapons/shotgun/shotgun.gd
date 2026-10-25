@@ -10,6 +10,7 @@ extends Node2D
 
 
 const BULLET = preload("uid://c1jarv1c2wevn")
+@onready var firing_soundplayer: AudioStreamPlayer = $firing_soundplayer
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -37,6 +38,7 @@ func _physics_process(_delta: float) -> void:
 		if(ready_to_fire):
 			fire_cooldown.start()
 			ready_to_fire = false
+			firing_soundplayer.play()
 			var bullet_instance = BULLET.instantiate()
 			get_tree().root.add_child(bullet_instance)
 			bullet_instance.global_position = muzzle.global_position

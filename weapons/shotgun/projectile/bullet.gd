@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var SPEED : int = 1000
+var SPEED : int = 1500
 var ttl : float = 2.5 #time to live
 var bullet_damage : float = 5
 var piercing_ammount : int = 1
