@@ -13,13 +13,15 @@ var is_hitting_player:bool = false
 
 #region ENEMY STATS
 
-var hp: float = 100
-var max_hp: float = 100
+var hp: float = 20
+var max_hp: float = 20
 var damage_to_player: float = 5
-
+var xp_drop: int = 15
 #endregion
 
 var random = RandomNumberGenerator.new()
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var hurt_box: CollisionShape2D = $Area2D/Hurt_box
 
 func _ready() -> void:
 	$AnimationPlayer.play("walk")
@@ -84,5 +86,16 @@ func _on_attack_detector_body_entered(body: Node2D) -> void:
 	get_tree().reload_current_scene()
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+# FUNÇÃO PRA QUANDO O TIRO ATINGE O INIMIGO
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if(area.get_parent().has_method("get_bullet_damage")):
+		var node = area.get_parent() as Node
+		hp -= node.get_bullet_damage()
+		if(hp<=0):
+			hurt_box.disabled = true
+			sprite_2d.visible = false
+			# ver se esse vai ter
+			#death_soundplayer.play()
+			Messages.add_xp.emit(xp_drop)
+			#await death_soundplayer.finished
+			queue_free()

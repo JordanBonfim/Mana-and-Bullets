@@ -2,14 +2,10 @@ extends CharacterBody2D
 
 const speed = 100
 
-
 var Player: Node2D
-
-var last_position = position
-
 var direction: Vector2 = Vector2.ZERO
 var is_facing_left:bool = false
-var is_hitting_player:bool = false
+
 
 
 
@@ -36,14 +32,13 @@ func _ready() -> void:
 	
 	var raio:int = sqrt(pow(half.x,2)+pow(half.y,2))
 	var angulo:int = random.randi() % 360
-	#print("Angulo:", angulo)
 	
 	position.y = Player.global_position.y + raio*sin(angulo)
 	position.x = Player.global_position.x + raio*cos(angulo)
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
-		
+		#cheatcode
 		if event.keycode == KEY_1:
 			queue_free()
 	
