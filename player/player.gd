@@ -27,7 +27,7 @@ var max_hp:float = 100 :
 @export var max_level: int = 100
 @export var base_xp: int = 100
 @export var growth_factor: float = 1.12
-@export var quadratic_multiplier: float = 1.0
+@export var quadratic_multiplier: float = 0.9
 
 
 
@@ -41,6 +41,7 @@ var max_hp:float = 100 :
 func _ready() -> void:
 	#$AnimatedSprite2D.play("idle_main")
 	Messages.player_hit.connect(set_player_health)
+	Messages.add_xp.connect(add_xp)
 	
 
 func _unhandled_input(event):
@@ -127,7 +128,7 @@ func _check_level_up() -> void:
 		levels_gained += 1
 		print("emitindo com: player_xp",player_xp)
 		print("emitindo com: xp_to_next_level",player_level)
-		Messages.leveled_up.emit(player_xp, xp_to_next_level(player_level))
+		Messages.leveled_up.emit(player_level, 1)
 	if(levels_gained > 1 ):
 		Messages.leveled_up.emit(player_level, levels_gained)
 	Messages.xp_changed.emit(player_xp, xp_to_next_level(player_level ))

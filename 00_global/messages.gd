@@ -22,3 +22,6 @@ signal leveled_up(new_level, levels_gained)
 
 @warning_ignore("unused_signal")
 signal xp_changed(current_xp, xp_to_next)
+
+@warning_ignore("unused_signal")
+signal add_xp(ammount: int)

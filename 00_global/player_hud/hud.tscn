@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bu16nmuyeyy4o" path="res://00_global/player_hud/assets/xp_bar_fill.png" id="4_e3l4t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_omn1t"]
-font_size = 32
+font_size = 22
 
 [node name="Hud" type="CanvasLayer" unique_id=1644129635]
 script = ExtResource("1_qdo0b")
@@ -44,6 +44,23 @@ offset_bottom = 81.0
 grow_horizontal = 0
 text = "WAVE: 1"
 label_settings = SubResource("LabelSettings_omn1t")
+uppercase = true
+
+[node name="Level_label" type="Label" parent="Control" unique_id=152552196]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.0
+offset_top = -64.0
+offset_right = 87.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "LEVEL: 1"
+label_settings = SubResource("LabelSettings_omn1t")
+horizontal_alignment = 1
 uppercase = true
 
 [node name="xp_bar" type="TextureProgressBar" parent="Control" unique_id=1764273149]

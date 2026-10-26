@@ -18,7 +18,7 @@ var is_hitting_player:bool = false
 var hp: float = 10
 var max_hp: float = 10
 var damage_to_player: float = 5
-
+var xp_drop: float = 10
 #endregion
 
 var random = RandomNumberGenerator.new()
@@ -105,6 +105,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			hurt_box.disabled = true
 			sprite_2d.visible = false
 			death_soundplayer.play()
+			Messages.add_xp.emit(xp_drop)
 			await death_soundplayer.finished
 			queue_free()
 		#print("enemy hp:",hp)
