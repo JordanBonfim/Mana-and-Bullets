@@ -50,7 +50,7 @@ size = Vector2(20, 30)
 [node name="UltraMage" type="CharacterBody2D" unique_id=342270267]
 scale = Vector2(4, 4)
 collision_layer = 4
-collision_mask = 8
+collision_mask = 104
 script = ExtResource("1_i7gww")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=538671649]
