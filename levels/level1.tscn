@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c3ixwmpe3bgoe" path="res://Enemy/ultra_mage/ultra_mage.tscn" id="5_61w3m"]
 [ext_resource type="PackedScene" uid="uid://dqvoafn6r7d0l" path="res://00_global/player_hud/hud.tscn" id="6_pdpul"]
 [ext_resource type="AudioStream" uid="uid://wuhg8mcwc5bq" path="res://Audio/rock2.wav" id="7_8hd6v"]
+[ext_resource type="Script" uid="uid://bvpe22jvossyt" path="res://levels/audio_stream_player.gd" id="9_lf3p4"]
 [ext_resource type="PackedScene" uid="uid://cfn0l2153nvw" path="res://upgrades_screen/upgrades.tscn" id="9_omn1t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdtm5"]
@@ -241,6 +242,7 @@ ultra_mage = ExtResource("5_61w3m")
 stream = ExtResource("7_8hd6v")
 volume_db = -23.854
 autoplay = true
+script = ExtResource("9_lf3p4")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=163849276]
 scale = Vector2(2, 2)

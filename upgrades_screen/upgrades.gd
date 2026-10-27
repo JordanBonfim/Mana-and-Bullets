@@ -17,6 +17,7 @@ var upgrades_selected : Array[int] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	Messages.leveled_up.connect(generate_upgrade)
 	Messages.upgrade_selected.connect(clear_children_cards)
 	random.randomize()

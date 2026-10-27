@@ -34,7 +34,6 @@ func _ready() -> void:
 		resolution_options.add_item(
 			str(resolution.x) + "x" + str(resolution.y)
 		)
-	resolution_options.select(3)
 		
 	window_mode_options.add_item("Windowed")
 	window_mode_options.add_item("Fullscreen")
@@ -49,7 +48,12 @@ func _ready() -> void:
 	
 	window_mode_options.item_selected.connect(change_window_mode)
 	resolution_options.item_selected.connect(change_window_resolution)
-		
+	
+	# MUDAR NO FUTURO PARA PEGAR DAS CONFIGURAÇÕES SALVAS DO USUÁRIO
+	resolution_options.select(3)
+	window_mode_options.select(1)
+	change_window_mode(1)
+	
 func change_window_mode(index:int) -> void:
 	match window_mode_options.selected:
 		0: # Windowed

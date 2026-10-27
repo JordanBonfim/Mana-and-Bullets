@@ -26,8 +26,8 @@ var max_hp:float = 100 :
 @export var max_level: int = 100
 @export var base_xp: int = 50
 @export var growth_factor: float = 1
-@export var quadratic_multiplier: float = 0.3
-
+@export var quadratic_multiplier: float = 0.22
+	
 
 #endregion
 
