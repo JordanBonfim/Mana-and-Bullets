@@ -19,15 +19,14 @@ var max_hp:float = 100 :
 @export var SPEED = 300.0
 
 # Damage
-@export var fire_cooldown:float = 0.5
 
 # Xp
 @export var player_level: int  = 1
 @export var player_xp: int  = 0
 @export var max_level: int = 100
-@export var base_xp: int = 100
-@export var growth_factor: float = 1.12
-@export var quadratic_multiplier: float = 0.9
+@export var base_xp: int = 50
+@export var growth_factor: float = 1
+@export var quadratic_multiplier: float = 0.5
 
 
 
@@ -64,11 +63,17 @@ func _unhandled_input(event):
 			Messages.increase_wave.emit(1)
 		
 		elif event.keycode == KEY_E:
-			print("ADICIONANDO 10 DE XP")
-			print("PLAYER XP  ", player_xp)
-			print("PLAYER LEVEL  ", player_level)
-			print("XP TO NEXT LEVEL  ", xp_to_next_level(player_level))
+			#print("ADICIONANDO 10 DE XP")
+			#print("PLAYER XP  ", player_xp)
+			#print("PLAYER LEVEL  ", player_level)
+			#print("XP TO NEXT LEVEL  ", xp_to_next_level(player_level))
 			add_xp(10)
+		elif event.keycode == KEY_F:
+			#print("ADICIONANDO 100 DE XP")
+			#print("PLAYER XP  ", player_xp)
+			#print("PLAYER LEVEL  ", player_level)
+			#print("XP TO NEXT LEVEL  ", xp_to_next_level(player_level))
+			add_xp(100)
 		
 			
 	#if event is InputEventMouseButton and event.pressed:

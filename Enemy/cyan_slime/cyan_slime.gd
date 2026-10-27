@@ -22,6 +22,7 @@ var random = RandomNumberGenerator.new()
 @onready var death_soundplayer: AudioStreamPlayer = $death_soundplayer
 @onready var hurt_box: CollisionShape2D = $Area2D/hurt_box
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var area_2d: Area2D = $Area2D
 
 
 func _ready() -> void:
@@ -97,7 +98,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var node = area.get_parent() as Node
 		hp -= node.get_bullet_damage()
 		if(hp<=0):
-			hurt_box.disabled = true
+			hurt_box.set_deferred("disabled", true)
+			
 			sprite_2d.visible = false
 			death_soundplayer.play()
 			Messages.add_xp.emit(xp_drop)

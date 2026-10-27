@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cfn0l2153nvw"]
+
+[ext_resource type="Script" uid="uid://beo37o584hxjo" path="res://upgrades_screen/upgrades.gd" id="1_esi55"]
+[ext_resource type="PackedScene" uid="uid://cq5v5qx4f07e8" path="res://upgrade_card/Upgrade_card.tscn" id="1_jetx8"]
+
+[node name="Upgrades" type="CanvasLayer" unique_id=835589319]
+script = ExtResource("1_esi55")
+
+[node name="Control" type="Control" parent="." unique_id=1506058232]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1357934167]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.36862746)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=1206469341]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -180.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.765, 0.765)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+alignment = 1
+
+[node name="UpgradeCard" parent="Control/HBoxContainer" unique_id=2040108448 instance=ExtResource("1_jetx8")]
+visible = false
+layout_mode = 2
+
+[node name="UpgradeCard2" parent="Control/HBoxContainer" unique_id=1009723317 instance=ExtResource("1_jetx8")]
+visible = false
+layout_mode = 2
+
+[node name="UpgradeCard3" parent="Control/HBoxContainer" unique_id=1875128900 instance=ExtResource("1_jetx8")]
+visible = false
+layout_mode = 2

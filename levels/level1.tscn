@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c3ixwmpe3bgoe" path="res://Enemy/ultra_mage/ultra_mage.tscn" id="5_61w3m"]
 [ext_resource type="PackedScene" uid="uid://dqvoafn6r7d0l" path="res://00_global/player_hud/hud.tscn" id="6_pdpul"]
 [ext_resource type="AudioStream" uid="uid://wuhg8mcwc5bq" path="res://Audio/rock2.wav" id="7_8hd6v"]
+[ext_resource type="PackedScene" uid="uid://cfn0l2153nvw" path="res://upgrades_screen/upgrades.tscn" id="9_omn1t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdtm5"]
 texture = ExtResource("1_sjb42")
@@ -243,5 +244,8 @@ autoplay = true
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=163849276]
 scale = Vector2(2, 2)
+
+[node name="Upgrades" parent="." unique_id=835589319 instance=ExtResource("9_omn1t")]
+visible = false
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

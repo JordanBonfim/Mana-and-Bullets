@@ -2,7 +2,7 @@ extends Node2D
 
 
 @export var ready_to_fire = true
-@export var fire_delay_seconds:float = 0.4
+@export var fire_delay_seconds:float = 0.2 # original is 0.4
 @export var smokeScene : PackedScene
 
 @onready var muzzle: Marker2D = $muzzle
@@ -16,14 +16,14 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			shoot()
 
-func shoot() -> void:
-	if not ready_to_fire:
-		return
-		
-	#var particle = Shot
-		
-func _physics_process(_delta: float) -> void:
+func _ready() -> void:
+	#Messages.player_health_changed.connect(update_health_bar)
 	fire_cooldown.wait_time = fire_delay_seconds
+	Messages.apply_percentage_fire_rate_upgrade.connect(set_fire_cooldown)
+	pass	
+
+func _physics_process(_delta: float) -> void:
+	
 
 	look_at(get_global_mouse_position())
 	rotation_degrees = wrap(rotation_degrees, 0, 360)
@@ -48,6 +48,20 @@ func _physics_process(_delta: float) -> void:
 			get_parent().add_child(smoke)
 			smoke.global_position = muzzle.global_position
 			smoke.rotation = rotation
+
+# Fire rate
+func set_fire_cooldown(ammount: float) -> void:
+	fire_cooldown.wait_time = fire_cooldown.wait_time - (fire_cooldown.wait_time*ammount/100)
+	print("time cooldown down to: ", fire_cooldown.wait_time)
+
+
+func shoot() -> void:
+	if not ready_to_fire:
+		return
+		
+	#var particle = Shot
+		
+
 
 func _on_fire_cooldown_timeout() -> void:
 	ready_to_fire = true

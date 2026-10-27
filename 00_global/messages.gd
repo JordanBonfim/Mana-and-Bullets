@@ -25,3 +25,20 @@ signal xp_changed(current_xp, xp_to_next)
 
 @warning_ignore("unused_signal")
 signal add_xp(ammount: int)
+
+
+# Upgrades
+@warning_ignore("unused_signal")
+signal apply_piercing_upgrade(piercing_ammount)
+
+@warning_ignore("unused_signal") # like 10 or 20 more damage
+signal apply_fixed_bullet_damage_upgrade(damage_ammount)
+
+@warning_ignore("unused_signal") # like 10% or 20% more damage
+signal apply_percentage_bullet_damage_upgrade(damage_ammount)
+
+@warning_ignore("unused_signal") # fire rate %
+signal apply_percentage_fire_rate_upgrade(decrease_ammount)
+
+@warning_ignore("unused_signal") 
+signal upgrade_selected()
