@@ -36,6 +36,6 @@ func update_level_label(new_level: int, levels_gained: int) -> void:
 func xp_bar_update(new_xp, xp_to_next) -> void:
 	xp_bar.max_value = xp_to_next
 	xp_bar.value = new_xp
-	print("BAR VALUE:", xp_bar.value)
-	print("BAR max VALUE:", xp_bar.max_value)
+	#print("BAR VALUE:", xp_bar.value)
+	#print("BAR max VALUE:", xp_bar.max_value)
 	

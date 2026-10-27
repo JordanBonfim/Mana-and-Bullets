@@ -2,8 +2,9 @@ extends Node2D
 
 
 @export var ready_to_fire = true
-@export var fire_delay_seconds:float = 0.2 # original is 0.4
+@export var fire_delay_seconds:float = 0.4 # original is 0.4
 @export var smokeScene : PackedScene
+
 
 @onready var muzzle: Marker2D = $muzzle
 @onready var fire_cooldown: Timer = $fire_cooldown
@@ -12,6 +13,11 @@ extends Node2D
 const BULLET = preload("uid://c1jarv1c2wevn")
 @onready var firing_soundplayer: AudioStreamPlayer = $firing_soundplayer
 
+@export var bullet_SPEED : int = 1500 # original 1500
+@export var bullet_ttl : float = 2.5 #time to live
+@export var bullet_damage : float = 5
+@export var bullet_piercing_ammount : int = 1
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			shoot()
@@ -19,8 +25,12 @@ func _unhandled_input(event):
 func _ready() -> void:
 	#Messages.player_health_changed.connect(update_health_bar)
 	fire_cooldown.wait_time = fire_delay_seconds
+	
 	Messages.apply_percentage_fire_rate_upgrade.connect(set_fire_cooldown)
-	pass	
+	
+	Messages.apply_piercing_upgrade.connect(increase_piercing)
+	Messages.apply_percentage_bullet_damage_upgrade.connect(increase_damage_percentage)
+	Messages.apply_fixed_bullet_damage_upgrade.connect(increase_damage_fixed)
 
 func _physics_process(_delta: float) -> void:
 	
@@ -44,6 +54,11 @@ func _physics_process(_delta: float) -> void:
 			bullet_instance.global_position = muzzle.global_position
 			bullet_instance.rotation = rotation
 			
+			bullet_instance.SPEED = bullet_SPEED
+			bullet_instance.ttl = bullet_ttl
+			bullet_instance.bullet_damage = bullet_damage
+			bullet_instance.piercing_ammount = bullet_piercing_ammount
+			
 			var smoke = smokeScene.instantiate() as GPUParticles2D
 			get_parent().add_child(smoke)
 			smoke.global_position = muzzle.global_position
@@ -65,3 +80,13 @@ func shoot() -> void:
 
 func _on_fire_cooldown_timeout() -> void:
 	ready_to_fire = true
+
+
+func increase_piercing(ammount: int) -> void:
+	bullet_piercing_ammount += ammount
+	
+func increase_damage_percentage(ammount: int) -> void:
+	bullet_damage = bullet_damage + (bullet_damage*ammount/100)
+
+func increase_damage_fixed(ammount: int) -> void:
+	bullet_damage += ammount

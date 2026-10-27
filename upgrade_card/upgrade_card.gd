@@ -9,8 +9,8 @@ extends Control
 
 const upgrades : Array[String] = [
 	"+1 Piercing shot",
-	"5% more fire-rate",
-	"10% damage increase",
+	"10% more fire-rate",
+	"30% damage increase",
 	]
 	
 # Called when the node enters the scene tree for the first time.
@@ -36,13 +36,14 @@ func _on_texture_button_pressed() -> void:
 	print("Botão com upgrade apertado: ",upgrades[upgrade_index])
 	
 	match upgrade_index:
-		#0: # +1 Piercing shot
-		
-		1: 
-			Messages.apply_percentage_fire_rate_upgrade.emit(5)
-		
-		#2: #  damage increase
-		
+		0: # +1 Piercing shot
+			Messages.apply_piercing_upgrade.emit(1)
+			
+		1: # Fire rate %
+			Messages.apply_percentage_fire_rate_upgrade.emit(10)
+			
+		2: #  damage increase
+			Messages.apply_percentage_bullet_damage_upgrade.emit(30)
 	
 	Messages.upgrade_selected.emit()
 	

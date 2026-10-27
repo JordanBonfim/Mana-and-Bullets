@@ -1,26 +1,24 @@
 extends Node2D
 
 
+
+@export var timer: Timer
+@export var smokeScene : PackedScene
+@onready var shotgun: Node2D = $"."
+
 var SPEED : int = 1500
 var ttl : float = 2.5 #time to live
 var bullet_damage : float = 5
 var piercing_ammount : int = 1
 
-
-@export var timer: Timer
-@export var smokeScene : PackedScene
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	timer.wait_time = ttl
 	timer.autostart = true
 	timer.start()
 	
 	
-	
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -51,6 +49,3 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 		queue_free()
 		
 	print("alguem entrou na bala")
-	
-	
-	
