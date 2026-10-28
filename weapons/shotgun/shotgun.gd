@@ -2,7 +2,6 @@ extends Node2D
 
 
 @export var ready_to_fire = true
-@export var fire_delay_seconds:float = 0.4 # original is 0.4
 @export var smokeScene : PackedScene
 
 
@@ -13,13 +12,13 @@ extends Node2D
 const BULLET = preload("uid://c1jarv1c2wevn")
 @onready var firing_soundplayer: AudioStreamPlayer = $firing_soundplayer
 
-@export var bullet_SPEED : int = 2000 # original 1500
+@export var bullet_SPEED : int = 2200 # original 1500
 @export var bullet_ttl : float = 0.4 #time to live
 @export var bullet_damage : float = 20
 @export var bullet_piercing_ammount : int = 1
-
 @export var bullet_spread : float = 0.5
 @export var projectiles_count : int = 3
+@export var fire_delay_seconds:float = 0.8 # original is 0.4
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -58,10 +57,10 @@ func _physics_process(_delta: float) -> void:
 				bullet_instance.global_position = muzzle.global_position
 				bullet_instance.rotation = rotation
 				
-				# with 2 bullets spread will be 0.5 rads
+				# with 2 bullets spread will begin with 0.5 rads
 				if(projectiles_count > 1):
 					var angle_begin = rotation - bullet_spread/2
-					var angle_per_bullet = bullet_spread / (projectiles_count -1)
+					var angle_per_bullet = bullet_spread / (projectiles_count - 1)
 					bullet_instance.rotation = angle_begin + (angle_per_bullet * i)
 					
 				

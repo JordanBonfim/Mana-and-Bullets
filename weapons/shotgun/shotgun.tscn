@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c0k7lsahhprnw" path="res://weapons/shotgun/shotgun.png" id="1_0kfn4"]
 [ext_resource type="PackedScene" uid="uid://bydsdrw2x4pf1" path="res://weapons/shotgun/projectile/Bullet_smoke.tscn" id="2_apfrx"]
 [ext_resource type="Script" uid="uid://deu8unoncdi3y" path="res://weapons/shotgun/shotgun.gd" id="2_rxqsx"]
-[ext_resource type="AudioStream" uid="uid://c8p6hcegx1r3b" path="res://Audio/laser_2.wav" id="4_ggjqm"]
+[ext_resource type="AudioStream" uid="uid://c1tjcj6i7g5m7" path="res://Audio/shotgun_fire.wav" id="4_ggjqm"]
 
 [node name="Shotgun" type="Node2D" unique_id=1305605320]
 visibility_layer = 8
@@ -21,6 +21,5 @@ position = Vector2(21, -1)
 
 [node name="firing_soundplayer" type="AudioStreamPlayer" parent="." unique_id=2120571438]
 stream = ExtResource("4_ggjqm")
-volume_db = -16.421
 
 [connection signal="timeout" from="fire_cooldown" to="." method="_on_fire_cooldown_timeout"]
