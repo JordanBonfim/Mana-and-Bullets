@@ -40,5 +40,8 @@ signal apply_percentage_bullet_damage_upgrade(damage_ammount)
 @warning_ignore("unused_signal") # fire rate %
 signal apply_percentage_fire_rate_upgrade(decrease_ammount)
 
+@warning_ignore("unused_signal") # Multiple shot
+signal increase_projectiles_ammount_upgrade(ammount)
+
 @warning_ignore("unused_signal") 
 signal upgrade_selected()

@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://jw11dxmygetv" path="res://upgrade_card/upgrade_card.gd" id="1_yc3re"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bhunq"]
-font_size = 20
+font_size = 32
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
-size = Vector2(279.89996, 529.10004)
+size = Vector2(279.89996, 530.4)
 
 [node name="UpgradeCard" type="Control" unique_id=1009723317]
 custom_minimum_size = Vector2(300, 600)
@@ -24,6 +24,7 @@ scale = Vector2(10, 10)
 texture = ExtResource("1_3kd1c")
 
 [node name="upgrade_name" type="Label" parent="." unique_id=1997649951]
+texture_filter = 2
 layout_mode = 0
 offset_left = 44.6
 offset_top = 138.1
@@ -35,13 +36,13 @@ autowrap_mode = 3
 [node name="Area2D" type="Area2D" parent="." unique_id=1916189819]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=986589750]
-position = Vector2(150.24998, 306.04993)
+position = Vector2(150.24998, 305.3999)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_bhunq")
 
 [node name="TextureButton" type="TextureButton" parent="Area2D" unique_id=2045719102]
 offset_left = 9.499999
-offset_top = 41.699997
+offset_top = 39.9
 offset_right = 291.49997
 offset_bottom = 570.3
 

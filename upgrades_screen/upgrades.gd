@@ -12,6 +12,7 @@ const upgrades : Array[String] = [
 	"+1 Piercing shot",
 	"5% more fire-rate",
 	"10% damage increse",
+	"+1 projectiles"
 	]
 var upgrades_selected : Array[int] = []
 
@@ -28,12 +29,6 @@ func generate_upgrade(new_level, levels_gained) -> void:
 	for child in h_box_container.get_children():
 		child.queue_free()
 	upgrades_selected.clear()
-	print("generating upgrades...")
-	print("generating upgrades...")
-	print("generating upgrades...")
-	print("generating upgrades...")
-	print("generating upgrades...")
-	print("generating upgrades...")
 	visible = true
 	
 	
@@ -51,6 +46,7 @@ func generate_upgrade(new_level, levels_gained) -> void:
 		print("for 2 i:",i)
 		
 		var new_card = UPGRADE_CARD.instantiate()
+		new_card.upgrades = upgrades
 		new_card.upgrade_index = upgrades_selected[i]
 		h_box_container.add_child(new_card)
 

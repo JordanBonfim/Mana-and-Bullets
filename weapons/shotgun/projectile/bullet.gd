@@ -2,21 +2,21 @@ extends Node2D
 
 
 
-@export var timer: Timer
 @export var smokeScene : PackedScene
 @onready var shotgun: Node2D = $"."
+@onready var bullet_lifetime: Timer = $bullet_lifetime
 
-var SPEED : int = 1500
-var ttl : float = 2.5 #time to live
-var bullet_damage : float = 5
-var piercing_ammount : int = 1
+@export var SPEED : int = 1500
+@export var ttl : float = 2.5 #time to live
+@export var bullet_damage : float = 5
+@export var piercing_ammount : int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	timer.wait_time = ttl
-	timer.autostart = true
-	timer.start()
+	bullet_lifetime.wait_time = ttl
+	bullet_lifetime.autostart = true
+	bullet_lifetime.start()
 	
 	
 
@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	
 
 
-func _on_timer_timeout() -> void:
+func _on_bullet_lifetime_timeout() -> void:
 	print("deleting bullet")
 	queue_free()
 	pass # Replace with function body.

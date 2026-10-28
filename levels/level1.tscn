@@ -240,7 +240,7 @@ ultra_mage = ExtResource("5_61w3m")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=640764196]
 stream = ExtResource("7_8hd6v")
-volume_db = -23.854
+volume_db = -4.54
 autoplay = true
 script = ExtResource("9_lf3p4")
 

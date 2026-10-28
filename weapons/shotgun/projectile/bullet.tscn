@@ -11,9 +11,8 @@ colors = PackedColorArray(1, 0.43333334, 0, 1, 1, 0.76, 0.04000002, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kpb6"]
 size = Vector2(24, 12)
 
-[node name="Bullet" type="Node2D" unique_id=1366979729 node_paths=PackedStringArray("timer")]
+[node name="Bullet" type="Node2D" unique_id=1366979729]
 script = ExtResource("1_fymuc")
-timer = NodePath("bullet_lifetime")
 smokeScene = ExtResource("2_w6phj")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=841928379]
@@ -43,5 +42,6 @@ collision_mask = 12
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box" unique_id=791447500]
 shape = SubResource("RectangleShape2D_2kpb6")
 
+[connection signal="timeout" from="bullet_lifetime" to="." method="_on_bullet_lifetime_timeout"]
 [connection signal="timeout" from="bullet_lifetime" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="hurt_box" to="." method="_on_hurt_box_body_entered"]

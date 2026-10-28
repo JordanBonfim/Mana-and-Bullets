@@ -7,7 +7,7 @@ extends Control
 @onready var background: Sprite2D = $background
 @onready var upgrades_parent: CanvasLayer = $"../../.."
 
-const upgrades : Array[String] = [
+@export var upgrades : Array[String] = [
 	"+1 Piercing shot",
 	"10% more fire-rate",
 	"30% damage increase",
@@ -44,6 +44,9 @@ func _on_texture_button_pressed() -> void:
 			
 		2: #  damage increase
 			Messages.apply_percentage_bullet_damage_upgrade.emit(30)
+			
+		3: #  projectiles increase
+			Messages.increase_projectiles_ammount_upgrade.emit(1)
 	
 	Messages.upgrade_selected.emit()
 	
