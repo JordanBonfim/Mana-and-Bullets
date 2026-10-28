@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://c3ixwmpe3bgoe"]
+
+[ext_resource type="Script" uid="uid://bjme2o5fb25j3" path="res://Enemy/ultra_mage/ultra_mage.gd" id="1_i7gww"]
+[ext_resource type="Texture2D" uid="uid://owj0xgk6vbk6" path="res://Enemy/ultra_mage/sprites/single_sheet.png" id="1_nrpd0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjk5h"]
+size = Vector2(20, 30)
+
+[sub_resource type="Animation" id="Animation_i7gww"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_p8c4f"]
+resource_name = "walk"
+length = 0.75
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i64ad"]
+_data = {
+&"RESET": SubResource("Animation_i7gww"),
+&"walk": SubResource("Animation_p8c4f")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
+size = Vector2(20, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bhunq"]
+radius = 198.01279
+
+[node name="UltraMage" type="CharacterBody2D" unique_id=342270267]
+scale = Vector2(4, 4)
+collision_layer = 4
+collision_mask = 40
+script = ExtResource("1_i7gww")
+growth_factor = null
+quadratic_multiplier = null
+wave_number = null
+player_in_range = null
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=538671649]
+texture = ExtResource("1_nrpd0")
+hframes = 10
+vframes = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1403552380]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_sjk5h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1990479551]
+libraries/ = SubResource("AnimationLibrary_i64ad")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1628374298]
+collision_layer = 4
+collision_mask = 32
+
+[node name="Hurt_box" type="CollisionShape2D" parent="Area2D" unique_id=1032298977]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_bhunq")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1518966717]
+
+[node name="fire_range" type="Area2D" parent="." unique_id=1653920452]
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fire_range" unique_id=2103373015]
+shape = SubResource("CircleShape2D_bhunq")
+
+[node name="firing_timer" type="Timer" parent="." unique_id=529321263]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="fire_range" to="." method="_on_fire_range_area_entered"]
+[connection signal="area_exited" from="fire_range" to="." method="_on_fire_range_area_exited"]
+[connection signal="timeout" from="firing_timer" to="." method="_on_firing_cooldown_timeout"]
+[connection signal="timeout" from="firing_timer" to="." method="_on_firing_timer_timeout"]

@@ -35,6 +35,11 @@ var max_hp:float = 100 :
 @onready var timer: Timer = $Timer
 
 
+@export var zoom_step := 0.1
+@export var min_zoom := 0.2
+@export var max_zoom := 2.0
+@onready var camera_2d: Camera2D = $Camera2D
+
 
 func _ready() -> void:
 	#$AnimatedSprite2D.play("idle_main")
@@ -43,6 +48,12 @@ func _ready() -> void:
 	
 
 func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			camera_2d.zoom = clamp(camera_2d.zoom - Vector2(zoom_step, zoom_step), Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			camera_2d.zoom = clamp(camera_2d.zoom + Vector2(zoom_step, zoom_step), Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
+	
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE:
 			get_tree().paused = !get_tree().paused
@@ -159,3 +170,16 @@ func total_xp_for_level(target_level: int) -> int:
 	for i in range(1, target_level):
 		total += xp_to_next_level(i)
 	return total
+
+
+# FUNÇÃO PRA QUANDO O TIRO ATINGE O INIMIGO
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if(area.get_parent().has_method("get_projectile_damage")):
+		var node = area.get_parent() as Node
+		hp -= node.get_projectile_damage()
+		if(hp<=0):
+			print("JOGADOR MORREU MANO")
+			# ver se esse vai ter
+			#death_soundplayer.play()
+			#await death_soundplayer.finished
+			get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")

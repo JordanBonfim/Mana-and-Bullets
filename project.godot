@@ -78,6 +78,8 @@ fire={
 2d_physics/layer_5="Collectables"
 2d_physics/layer_6="Bullets"
 2d_physics/layer_7="Lava"
+2d_physics/layer_8="enemy_range"
+2d_physics/layer_9="enemy_projectiles"
 
 [physics]
 
