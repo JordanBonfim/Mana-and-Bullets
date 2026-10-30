@@ -45,3 +45,8 @@ signal increase_projectiles_ammount_upgrade(ammount)
 
 @warning_ignore("unused_signal") 
 signal upgrade_selected()
+
+
+# Spells
+@warning_ignore("unused_signal")
+signal spell_selected(index)

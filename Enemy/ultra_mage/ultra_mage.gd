@@ -105,7 +105,7 @@ func _physics_process(delta: float) -> void:
 			projectile_instance.rotation = direction_to_player.angle()
 			get_tree().root.add_child(projectile_instance)
 			
-		print("piu piu atirando parado")
+		# print("piu piu atirando parado")
 		
 
 func hit() -> void:

@@ -39,11 +39,7 @@ func _physics_process(_delta: float) -> void:
 		scale.y = -1
 	else:
 		scale.y = 1
-		
-		
-	
-	
-		
+				
 	if Input.is_action_pressed("fire") :
 		if(ready_to_fire):
 			for i in range(projectiles_count):

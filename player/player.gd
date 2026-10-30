@@ -28,6 +28,11 @@ var max_hp:float = 100 :
 @export var growth_factor: float = 1
 @export var quadratic_multiplier: float = 0.22
 	
+	
+# SPELLS
+@export var spells_ : Array[int] = []	
+const SPELL = preload("uid://c82n8qwqthm6b")
+
 
 #endregion
 
@@ -45,6 +50,7 @@ func _ready() -> void:
 	#$AnimatedSprite2D.play("idle_main")
 	Messages.player_hit.connect(set_player_health)
 	Messages.add_xp.connect(add_xp)
+	Messages.spell_selected.connect(add_spell)
 	
 
 func _unhandled_input(event):
@@ -178,8 +184,26 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var node = area.get_parent() as Node
 		hp -= node.get_projectile_damage()
 		if(hp<=0):
-			print("JOGADOR MORREU MANO")
+			print("JOGADOR MORREU")
 			# ver se esse vai ter
 			#death_soundplayer.play()
 			#await death_soundplayer.finished
 			get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
+
+
+# SPELLS
+func add_spell(spell_type: int) -> void:
+	print("aoooooooooooooooooooooopa")
+	print("aoooooooooooooooooooooopa")
+	print("aoooooooooooooooooooooopa")
+	print("aoooooooooooooooooooooopa")
+	print("aoooooooooooooooooooooopa")
+	match spell_type:
+		0: # Fireball
+			var spell = SPELL.instantiate()
+			spell.spell_type = spell_type 
+			add_child(spell)
+			
+	
+	
+	pass
