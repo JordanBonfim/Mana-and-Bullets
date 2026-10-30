@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddcv4jo3a7h1d"
-path="res://.godot/imported/alguem2.png-12ad38aab2cb0671086bc46ef4b5fff8.ctex"
+uid="uid://b8wamxmvxm6cp"
+path="res://.godot/imported/RUN4.png-2874dbe4440e4f121b43ba4cf19670e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sprites/alguem2.png"
-dest_files=["res://.godot/imported/alguem2.png-12ad38aab2cb0671086bc46ef4b5fff8.ctex"]
+source_file="res://player/sprites/run/RUN4.png"
+dest_files=["res://.godot/imported/RUN4.png-2874dbe4440e4f121b43ba4cf19670e8.ctex"]
 
 [params]
 
