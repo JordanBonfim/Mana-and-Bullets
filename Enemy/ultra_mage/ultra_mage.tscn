@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bjme2o5fb25j3" path="res://Enemy/ultra_mage/ultra_mage.gd" id="1_i7gww"]
 [ext_resource type="Texture2D" uid="uid://owj0xgk6vbk6" path="res://Enemy/ultra_mage/sprites/single_sheet.png" id="1_nrpd0"]
+[ext_resource type="Shader" uid="uid://bdl2h3e55bh6x" path="res://Enemy/ultra_mage/hit_flash.gdshader" id="2_p8c4f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7gww"]
+resource_local_to_scene = true
+shader = ExtResource("2_p8c4f")
+shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
+shader_parameter/hit_flash_on = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sjk5h"]
 size = Vector2(20, 30)
@@ -50,6 +57,44 @@ size = Vector2(20, 30)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bhunq"]
 radius = 198.01279
 
+[sub_resource type="Animation" id="Animation_i64ad"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fmjot"]
+resource_name = "hit"
+length = 0.19999999999999998
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ptr8q"]
+_data = {
+&"RESET": SubResource("Animation_i64ad"),
+&"hit": SubResource("Animation_fmjot")
+}
+
 [node name="UltraMage" type="CharacterBody2D" unique_id=342270267]
 scale = Vector2(4, 4)
 collision_layer = 4
@@ -57,6 +102,7 @@ collision_mask = 40
 script = ExtResource("1_i7gww")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=538671649]
+material = SubResource("ShaderMaterial_i7gww")
 texture = ExtResource("1_nrpd0")
 hframes = 10
 vframes = 10
@@ -86,6 +132,9 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_bhunq")
 
 [node name="firing_timer" type="Timer" parent="." unique_id=529321263]
+
+[node name="HitFlashAnimation" type="AnimationPlayer" parent="." unique_id=1801138147]
+libraries/ = SubResource("AnimationLibrary_ptr8q")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="fire_range" to="." method="_on_fire_range_area_entered"]

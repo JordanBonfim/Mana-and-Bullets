@@ -34,11 +34,13 @@ var ready_to_fire: bool = true
 
 @onready var firing_timer: Timer = $firing_timer
 @onready var marker_2d: Marker2D = $Marker2D
+@onready var hit_flash_animation: AnimationPlayer = $HitFlashAnimation
 
-
+var original_color: Color
 const MAGE_PROJECTILE = preload("uid://c3cb5sedl8gx5")
 
 func _ready() -> void:
+	original_color = sprite_2d.modulate
 	$AnimationPlayer.play("walk")
 	random.randomize()
 	
@@ -122,6 +124,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if(area.get_parent().has_method("get_damage")):
 		var node = area.get_parent() as Node
 		hp -= node.get_damage()
+		
+		
+		hit_flash_animation.play("hit")
+		
+		
 		if(hp<=0):
 			hurt_box.disabled = true
 			sprite_2d.visible = false
@@ -130,8 +137,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			Messages.add_xp.emit(xp_drop)
 			#await death_soundplayer.finished
 			queue_free()
-			
-			
 
 
 func _on_fire_range_area_entered(area: Area2D) -> void:
@@ -150,3 +155,4 @@ func _on_firing_timer_timeout() -> void:
 func set_fire_cooldown(ammount: float) -> void:
 	firing_timer.wait_time = firing_timer.wait_time - (firing_timer.wait_time*ammount/100)
 	print("time cooldown down to: ", firing_timer.wait_time)
+	

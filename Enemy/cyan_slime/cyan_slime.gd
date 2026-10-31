@@ -32,6 +32,7 @@ var random = RandomNumberGenerator.new()
 @onready var hurt_box: CollisionShape2D = $Area2D/hurt_box
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var area_2d: Area2D = $Area2D
+@onready var hit_flash_animation: AnimationPlayer = $HitFlashAnimation
 
 
 func _ready() -> void:
@@ -110,6 +111,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		
 		var node = area.get_parent() as Node
 		hp -= node.get_damage()
+		
+		hit_flash_animation.play("hit")
+		
 		if(hp<=0):
 			hurt_box.set_deferred("disabled", true)
 			sprite_2d.visible = false
