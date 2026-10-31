@@ -105,7 +105,6 @@ func _physics_process(delta: float) -> void:
 			projectile_instance.rotation = direction_to_player.angle()
 			get_tree().root.add_child(projectile_instance)
 			
-		print("piu piu atirando parado")
 		
 
 func hit() -> void:
@@ -120,9 +119,9 @@ func walk () -> void :
 
 # FUNÇÃO PRA QUANDO O TIRO ATINGE O INIMIGO
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if(area.get_parent().has_method("get_bullet_damage")):
+	if(area.get_parent().has_method("get_damage")):
 		var node = area.get_parent() as Node
-		hp -= node.get_bullet_damage()
+		hp -= node.get_damage()
 		if(hp<=0):
 			hurt_box.disabled = true
 			sprite_2d.visible = false

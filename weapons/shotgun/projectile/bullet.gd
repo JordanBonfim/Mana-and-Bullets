@@ -27,11 +27,11 @@ func _process(delta: float) -> void:
 
 
 func _on_bullet_lifetime_timeout() -> void:
-	print("deleting bullet")
+	#print("deleting bullet")
 	queue_free()
 	pass # Replace with function body.
 	
-func get_bullet_damage() -> float:
+func get_damage() -> float:
 	return bullet_damage
 
 

@@ -76,10 +76,11 @@ fire={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Environment"
 2d_physics/layer_5="Collectables"
-2d_physics/layer_6="Bullets"
+2d_physics/layer_6="Player_projectiles"
 2d_physics/layer_7="Lava"
 2d_physics/layer_8="enemy_range"
 2d_physics/layer_9="enemy_projectiles"
+2d_physics/layer_10="spell_range"
 
 [physics]
 

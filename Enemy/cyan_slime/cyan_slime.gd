@@ -106,10 +106,10 @@ func _on_attack_detector_body_entered(body: Node2D) -> void:
 # FUNÇÃO PRA QUANDO O TIRO ATINGE O INIMIGO
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	
-	if(area.get_parent().has_method("get_bullet_damage")):
+	if(area.get_parent().has_method("get_damage")):
 		
 		var node = area.get_parent() as Node
-		hp -= node.get_bullet_damage()
+		hp -= node.get_damage()
 		if(hp<=0):
 			hurt_box.set_deferred("disabled", true)
 			sprite_2d.visible = false
