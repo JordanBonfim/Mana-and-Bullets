@@ -6,10 +6,10 @@ const BULLET = preload("uid://c1jarv1c2wevn")
 @export var smokeScene: PackedScene
 
 @export_group("Stats da Arma")
-@export var fire_delay_seconds: float = 0.6
+@export var fire_delay_seconds: float = 0.5
 @export var bullet_SPEED: int = 2200
 @export var bullet_ttl: float = 1.5
-@export var bullet_damage: float = 8
+@export var bullet_damage: float = 9
 @export var bullet_piercing_ammount: int = 1
 @export var bullet_spread: float = 0.0
 @export var projectiles_count: int = 1

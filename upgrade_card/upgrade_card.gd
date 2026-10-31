@@ -59,5 +59,6 @@ func _on_texture_button_pressed() -> void:
 		Messages.spell_selected.emit(upgrade_index)
 		
 	Messages.upgrade_selected.emit()
-	
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
 	pass # Replace with function body.

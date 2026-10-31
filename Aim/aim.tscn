@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://baidmslq3gp75"]
+
+[ext_resource type="Texture2D" uid="uid://cbghu1xjil5l2" path="res://Aim/aim.png" id="1_elpvm"]
+[ext_resource type="Script" uid="uid://bngknfety1jde" path="res://Aim/aim.gd" id="1_y86wc"]
+
+[node name="Aim" type="Node2D" unique_id=926235812]
+script = ExtResource("1_y86wc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1862761188]
+texture = ExtResource("1_elpvm")

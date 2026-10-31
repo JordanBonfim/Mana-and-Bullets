@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://wuhg8mcwc5bq" path="res://Audio/rock2.wav" id="7_8hd6v"]
 [ext_resource type="Script" uid="uid://bvpe22jvossyt" path="res://levels/audio_stream_player.gd" id="9_lf3p4"]
 [ext_resource type="PackedScene" uid="uid://cfn0l2153nvw" path="res://upgrades_screen/upgrades.tscn" id="9_omn1t"]
+[ext_resource type="PackedScene" uid="uid://baidmslq3gp75" path="res://Aim/aim.tscn" id="11_yydhl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdtm5"]
 texture = ExtResource("1_sjb42")
@@ -250,5 +251,8 @@ scale = Vector2(2, 2)
 
 [node name="Upgrades" parent="." unique_id=835589319 instance=ExtResource("9_omn1t")]
 visible = false
+
+[node name="Aim" parent="." unique_id=926235812 instance=ExtResource("11_yydhl")]
+scale = Vector2(0.4, 0.4)
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

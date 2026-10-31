@@ -88,15 +88,18 @@ func _process(delta: float) -> void:
 	pass
 
 func switch_to_play_scene() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	get_tree().change_scene_to_file("res://levels/level1.tscn")
 	pass
 	
 func show_settings_menu() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	main_menu.visible = false
 	settings_menu.visible = true
 	back_to_main_menu_button.grab_focus()
 	
 func show_main_menu() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	main_menu.visible = true
 	settings_menu.visible = false
 	play_button.grab_focus()

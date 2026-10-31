@@ -36,6 +36,8 @@ func _ready() -> void:
 	
 		
 func generate_upgrade(new_level, levels_gained) -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 	for child in h_box_container.get_children():
 		child.queue_free()
 	upgrades_selected.clear()
