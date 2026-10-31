@@ -34,6 +34,15 @@ var max_hp: float = 1000:
 const SPELL = preload("uid://c82n8qwqthm6b")
 
 
+# WEAPON
+# 0 = shotgun; 
+# 1 = machine pistol;
+var weapon_selected: int = 1
+const MACHINE_PISTOL = preload("uid://csuqu0tfehvuc")
+const SHOTGUN = preload("uid://dma1ga5m88jpj")
+@onready var weapon_handle: Marker2D = $Area2D/Weapon_handle
+
+
 #endregion
 
 @export var smokeScene: PackedScene
@@ -50,6 +59,16 @@ func _ready() -> void:
 	Messages.player_hit.connect(set_player_health)
 	Messages.add_xp.connect(add_xp)
 	Messages.spell_selected.connect(add_spell)
+	
+	var weapon_instance = SHOTGUN.instantiate()
+	match weapon_selected:
+		0:
+			weapon_instance = SHOTGUN.instantiate()
+		1:	
+			weapon_instance = MACHINE_PISTOL.instantiate()
+			
+	weapon_instance.global_position = weapon_handle.position
+	add_child(weapon_instance)
 	
 
 

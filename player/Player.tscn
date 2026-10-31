@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://7ap4afqyu0nh"]
 
 [ext_resource type="Script" uid="uid://gjwsnxak525q" path="res://player/player.gd" id="1_ulp21"]
-[ext_resource type="PackedScene" uid="uid://dma1ga5m88jpj" path="res://weapons/shotgun/shotgun.tscn" id="3_wnvi2"]
 [ext_resource type="Texture2D" uid="uid://b2fn3y6god2y1" path="res://player/sprites/idle/IDLE2.png" id="3_yu5hk"]
 [ext_resource type="Texture2D" uid="uid://cnscl1xbsfwo" path="res://player/sprites/idle/IDLE3.png" id="4_q6miu"]
 [ext_resource type="Texture2D" uid="uid://3d0s6a1idxdl" path="res://player/sprites/idle/IDLE4.png" id="5_mlfor"]
@@ -199,7 +198,7 @@ collision_mask = 388
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2090462866]
 shape = SubResource("RectangleShape2D_bhunq")
 
-[node name="Shotgun" parent="Area2D" unique_id=1305605320 instance=ExtResource("3_wnvi2")]
-position = Vector2(4.5, 3.5)
+[node name="Weapon_handle" type="Marker2D" parent="Area2D" unique_id=1207522416]
+position = Vector2(5, 4)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

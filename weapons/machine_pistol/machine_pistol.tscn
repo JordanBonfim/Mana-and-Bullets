@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://csuqu0tfehvuc"]
+
+[ext_resource type="Script" uid="uid://bwdgt4i5mqdvm" path="res://weapons/machine_pistol/machine_pistol.gd" id="1_jrm7m"]
+[ext_resource type="Texture2D" uid="uid://43lsh10w8y3m" path="res://weapons/machine_pistol/machine_pistol_1.png" id="2_jrm7m"]
+[ext_resource type="AudioStream" uid="uid://c1tjcj6i7g5m7" path="res://Audio/shotgun_fire.wav" id="3_ugyf3"]
+
+[node name="MachinePistol" type="Node2D" unique_id=1305605320]
+visibility_layer = 8
+script = ExtResource("1_jrm7m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=870953946]
+position = Vector2(3, -1)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_jrm7m")
+
+[node name="muzzle" type="Marker2D" parent="." unique_id=649834210]
+position = Vector2(10, -2)
+
+[node name="fire_cooldown" type="Timer" parent="." unique_id=890843427]
+
+[node name="firing_soundplayer" type="AudioStreamPlayer" parent="." unique_id=542170107]
+stream = ExtResource("3_ugyf3")
