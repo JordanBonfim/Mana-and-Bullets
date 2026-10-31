@@ -69,7 +69,7 @@ func generate_upgrade(new_level, levels_gained) -> void:
 			
 	elif (upgrade_type == 1):
 		print("generating spells upgrades")
-		spells_slots -= 1
+		spells_slots = spells_slots-1
 		for i in range(0,upgrades_number):
 			print("for 1 i:",i)
 			var n = random.randi_range(0,available_spells.size()-1)

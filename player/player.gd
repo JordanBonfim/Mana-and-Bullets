@@ -4,12 +4,12 @@ extends CharacterBody2D
 var player_is_facing_left: bool = false
 
 # Life
-var hp: float = 100:
+var hp: float = 1000:
 	set(value):
 		hp = clampf(value, 0, max_hp)
 		Messages.player_health_changed.emit(hp, max_hp)
 
-var max_hp: float = 100:
+var max_hp: float = 1000:
 	# Heal player every time health increases??? Think.
 	set(value):
 		max_hp = value
@@ -31,7 +31,6 @@ var max_hp: float = 100:
 	
 	
 # SPELLS
-@export var spells_ : Array[int] = []	
 const SPELL = preload("uid://c82n8qwqthm6b")
 
 
@@ -186,11 +185,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 # SPELLS
 func add_spell(spell_type: int) -> void:
-	print("aoooooooooooooooooooooopa")
-	print("aoooooooooooooooooooooopa")
-	print("aoooooooooooooooooooooopa")
-	print("aoooooooooooooooooooooopa")
-	print("aoooooooooooooooooooooopa")
 	match spell_type:
 		0: # Fireball
 			var spell = SPELL.instantiate()
