@@ -1,25 +1,21 @@
 [gd_scene format=3 uid="uid://dma1ga5m88jpj"]
 
 [ext_resource type="Texture2D" uid="uid://c0k7lsahhprnw" path="res://weapons/shotgun/shotgun.png" id="1_0kfn4"]
-[ext_resource type="PackedScene" uid="uid://bydsdrw2x4pf1" path="res://weapons/shotgun/projectile/Bullet_smoke.tscn" id="2_apfrx"]
 [ext_resource type="Script" uid="uid://deu8unoncdi3y" path="res://weapons/shotgun/shotgun.gd" id="2_rxqsx"]
 [ext_resource type="AudioStream" uid="uid://c1tjcj6i7g5m7" path="res://Audio/shotgun_fire.wav" id="4_ggjqm"]
 
 [node name="Shotgun" type="Node2D" unique_id=1305605320]
 visibility_layer = 8
 script = ExtResource("2_rxqsx")
-smokeScene = ExtResource("2_apfrx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=870953946]
-position = Vector2(6, -1)
+position = Vector2(6, -2)
 texture = ExtResource("1_0kfn4")
 
-[node name="muzzle" type="Marker2D" parent="." unique_id=1028977801]
-position = Vector2(21, -1)
+[node name="muzzle" type="Marker2D" parent="." unique_id=649834210]
+position = Vector2(19, -3)
 
-[node name="fire_cooldown" type="Timer" parent="." unique_id=1945760497]
+[node name="fire_cooldown" type="Timer" parent="." unique_id=890843427]
 
-[node name="firing_soundplayer" type="AudioStreamPlayer" parent="." unique_id=2120571438]
+[node name="firing_soundplayer" type="AudioStreamPlayer" parent="." unique_id=542170107]
 stream = ExtResource("4_ggjqm")
-
-[connection signal="timeout" from="fire_cooldown" to="." method="_on_fire_cooldown_timeout"]
