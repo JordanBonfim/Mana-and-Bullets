@@ -19,6 +19,7 @@ shape = SubResource("CircleShape2D_mr5cl")
 debug_color = Color(0.02193944, 0.58930844, 0.75331485, 0.41960785)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1901815469]
+visible = false
 amount = 40
 lifetime = 0.09
 preprocess = 0.4
