@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://be1qoo4m3tvh8"]
+
+[ext_resource type="Texture2D" uid="uid://cpvko2wb102gp" path="res://Spells/Fireball/fireball_2.png" id="1_656pk"]
+[ext_resource type="Script" uid="uid://djijue23wji32" path="res://Spells/spell_projectile.gd" id="1_kcfer"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_656pk"]
+atlas = ExtResource("1_656pk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcfer"]
+atlas = ExtResource("1_656pk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msa01"]
+atlas = ExtResource("1_656pk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ke70"]
+atlas = ExtResource("1_656pk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mot4n"]
+atlas = ExtResource("1_656pk")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhunq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_656pk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcfer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msa01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ke70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mot4n")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
+size = Vector2(16, 12)
+
+[node name="SpellProjectile" type="Node2D" unique_id=1219408482]
+script = ExtResource("1_kcfer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=219799833]
+sprite_frames = SubResource("SpriteFrames_bhunq")
+frame = 3
+frame_progress = 0.13806868
+
+[node name="Projectile_lifetime" type="Timer" parent="." unique_id=41050234]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1836409055]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1639962294]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_bhunq")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

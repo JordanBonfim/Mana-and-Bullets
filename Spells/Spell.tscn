@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://c82n8qwqthm6b"]
+
+[ext_resource type="Script" uid="uid://bem2mocyb4bhl" path="res://Spells/spell.gd" id="1_poaw0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mr5cl"]
+radius = 89.453896
+
+[node name="Spell" type="Node2D" unique_id=108929713]
+script = ExtResource("1_poaw0")
+
+[node name="spell_timer" type="Timer" parent="." unique_id=1985071287]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1207056084]
+collision_layer = 512
+collision_mask = 4
+
+[node name="spell_range" type="CollisionShape2D" parent="Area2D" unique_id=362606631]
+shape = SubResource("CircleShape2D_mr5cl")
+debug_color = Color(0.02193944, 0.58930844, 0.75331485, 0.41960785)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1901815469]
+amount = 40
+lifetime = 0.09
+preprocess = 0.4
+speed_scale = 0.3
+emission_shape = 1
+emission_sphere_radius = 84.05
+spread = 180.0
+gravity = Vector2(0, 300)
+orbit_velocity_min = -7.63
+orbit_velocity_max = 22.9
+scale_amount_min = 1.18
+scale_amount_max = 8.82
+color = Color(1, 0, 0, 1)
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=560962739]
+
+[connection signal="timeout" from="spell_timer" to="." method="_on_spell_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

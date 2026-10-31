@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 
 
 func _on_projectile_lifetime_timeout() -> void:
-	print("deleting bullet")
+	#print("deleting bullet")
 	queue_free()
 	pass # Replace with function body.
 	

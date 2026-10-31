@@ -4,12 +4,12 @@ extends CharacterBody2D
 var player_is_facing_left: bool = false
 
 # Life
-var hp: float = 100:
+var hp: float = 1000:
 	set(value):
 		hp = clampf(value, 0, max_hp)
 		Messages.player_health_changed.emit(hp, max_hp)
 
-var max_hp: float = 100:
+var max_hp: float = 1000:
 	# Heal player every time health increases??? Think.
 	set(value):
 		max_hp = value
@@ -28,6 +28,12 @@ var max_hp: float = 100:
 @export var base_xp: int = 50
 @export var growth_factor: float = 1.0
 @export var quadratic_multiplier: float = 0.22
+	
+	
+# SPELLS
+const SPELL = preload("uid://c82n8qwqthm6b")
+
+
 #endregion
 
 @export var smokeScene: PackedScene
@@ -43,6 +49,8 @@ var max_hp: float = 100:
 func _ready() -> void:
 	Messages.player_hit.connect(set_player_health)
 	Messages.add_xp.connect(add_xp)
+	Messages.spell_selected.connect(add_spell)
+	
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -171,5 +179,18 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var node = area.get_parent() as Node
 		hp -= node.get_projectile_damage()
 		if hp <= 0:
-			print("JOGADOR MORREU MANO")
+			print("JOGADOR MORREU")
 			get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
+
+
+# SPELLS
+func add_spell(spell_type: int) -> void:
+	match spell_type:
+		0: # Fireball
+			var spell = SPELL.instantiate()
+			spell.spell_type = spell_type 
+			add_child(spell)
+			
+	
+	
+	pass
