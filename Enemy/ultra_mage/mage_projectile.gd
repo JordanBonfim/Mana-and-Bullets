@@ -8,15 +8,16 @@ extends Node2D
 @export var ttl : float = 2 #time to live
 @export var projectile_damage : float = 15
 @export var piercing_ammount : int = 1
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	animated_sprite_2d.autoplay = "default"
+	animated_sprite_2d.play()
 	projectile_lifetime.wait_time = ttl
 	projectile_lifetime.autostart = true
 	projectile_lifetime.start()
-	animation_player.play("default")
+	
 	
 	
 	
