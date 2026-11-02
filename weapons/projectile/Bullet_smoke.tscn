@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bydsdrw2x4pf1"]
 
-[ext_resource type="Texture2D" uid="uid://veqtpvdlcc3e" path="res://weapons/shotgun/projectile/debris.png" id="1_1syvw"]
+[ext_resource type="Texture2D" uid="uid://veqtpvdlcc3e" path="res://weapons/projectile/debris.png" id="1_1syvw"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2kpb6"]
 particles_animation = true

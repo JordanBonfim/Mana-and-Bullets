@@ -1,6 +1,7 @@
 extends Node2D
 
 
+const BULLET_IMPACT = preload("uid://c45ht4emc5f4")
 
 @export var smokeScene : PackedScene
 @onready var shotgun: Node2D = $"."
@@ -10,6 +11,7 @@ extends Node2D
 @export var ttl : float = 2.5 #time to live
 @export var bullet_damage : float = 5
 @export var piercing_ammount : int = 1
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -43,6 +45,10 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 	smoke.global_position = position
 	smoke.rotation = rotation
  	
+	var bullet_impact = BULLET_IMPACT.instantiate()
+	get_parent().add_child(bullet_impact)
+	bullet_impact.global_position = position
+	bullet_impact.rotation = rotation
 	
 	piercing_ammount-=1
 	if(piercing_ammount==0):

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c1jarv1c2wevn"]
 
-[ext_resource type="Script" uid="uid://dsi7dwrio2pp5" path="res://weapons/shotgun/projectile/bullet.gd" id="1_fymuc"]
-[ext_resource type="Texture2D" uid="uid://dnh5s3vp6tyad" path="res://weapons/shotgun/projectile/bullet_type1.png" id="2_fymuc"]
-[ext_resource type="PackedScene" uid="uid://bydsdrw2x4pf1" path="res://weapons/shotgun/projectile/Bullet_smoke.tscn" id="2_w6phj"]
+[ext_resource type="Script" uid="uid://dsi7dwrio2pp5" path="res://weapons/projectile/bullet.gd" id="1_fymuc"]
+[ext_resource type="Texture2D" uid="uid://dnh5s3vp6tyad" path="res://weapons/projectile/bullet_type1.png" id="2_fymuc"]
+[ext_resource type="PackedScene" uid="uid://bydsdrw2x4pf1" path="res://weapons/projectile/Bullet_smoke.tscn" id="2_w6phj"]
 
 [sub_resource type="Gradient" id="Gradient_sjk5h"]
 offsets = PackedFloat32Array(0, 0.17574258)
@@ -42,6 +42,6 @@ collision_mask = 12
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurt_box" unique_id=791447500]
 shape = SubResource("RectangleShape2D_2kpb6")
 
-[connection signal="timeout" from="bullet_lifetime" to="." method="_on_bullet_lifetime_timeout"]
 [connection signal="timeout" from="bullet_lifetime" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="bullet_lifetime" to="." method="_on_bullet_lifetime_timeout"]
 [connection signal="body_entered" from="hurt_box" to="." method="_on_hurt_box_body_entered"]
