@@ -194,22 +194,23 @@ func total_xp_for_level(target_level: int) -> int:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.get_parent().has_method("get_projectile_damage"):
+	if area.get_parent().has_method("get_melee_damage") or area.get_parent().has_method("get_projectile_damage"):
 		var node = area.get_parent() as Node
-		hp -= node.get_projectile_damage()
+		if area.get_parent().has_method("get_melee_damage"):
+			hp -= node.get_melee_damage()
+		elif area.get_parent().has_method("get_projectile_damage"):
+			hp -= node.get_projectile_damage()
+			
 		if hp <= 0:
 			print("JOGADOR MORREU")
 			get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
-
+	
 
 # SPELLS
 func add_spell(spell_type: int) -> void:
-	match spell_type:
-		0: # Fireball
-			var spell = SPELL.instantiate()
-			spell.spell_type = spell_type 
-			add_child(spell)
+	#match spell_type:
+		#0: # Fireball
+	var spell = SPELL.instantiate()
+	spell.spell_type = spell_type 
+	add_child(spell)
 			
-	
-	
-	pass

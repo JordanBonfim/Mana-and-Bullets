@@ -16,6 +16,14 @@ const SPELL_PROJECTILE = preload("uid://be1qoo4m3tvh8")
 
 @export var ready_spell: bool = true
 
+# FIREBALL
+@export var burning_time_seconds: float = 2.5
+@export var burning_damage: float = 6
+
+# ICE SHARD
+@export var freezing_time_seconds: float = 1.2
+
+
 var enemies_in_range: Array = []
 var random = RandomNumberGenerator.new()
 
@@ -24,38 +32,53 @@ var how_many_enemy_targets: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spell_timer.wait_time = spell_cooldown
 	
 	match spell_type:
 		0: # fireball
 			spell_range.scale = spell_range.scale*3
+			spell_cooldown = 5.0
+		1: # Ice-shard
+			spell_cooldown = 10.0
+			spell_range.scale = spell_range.scale*2.8
 			
+	spell_timer.wait_time = spell_cooldown
 			#cpu_particles_2d.visible = true
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if(ready_spell == false):
 		return
-
-	
-	ready_spell = false
-	spell_timer.start()
-	
-	if(how_many_enemy_targets == 1 and enemies_in_range.size() > 0):
-		var index = random.randi_range(0,enemies_in_range.size()-1)
-		var enemy_position = enemies_in_range[index].global_position
 		
-		
-		
-		match spell_type:
-			0: #Fire-ball
-				var fireball = SPELL_PROJECTILE.instantiate()
-				var direction_to_enemy = (enemy_position - marker_2d.global_position).normalized()
-				fireball.global_position = marker_2d.global_position
-				fireball.rotation = direction_to_enemy.angle()
-				get_tree().root.add_child(fireball)
+	if(enemies_in_range.size() > 0):
+		ready_spell = false
+		spell_timer.start()
+		if(how_many_enemy_targets == 1 and enemies_in_range.size() > 0):
+			var index = random.randi_range(0,enemies_in_range.size()-1)
+			var enemy_position = enemies_in_range[index].global_position
+			
+			match spell_type:
+				0: #Fire-ball
+					var fireball = SPELL_PROJECTILE.instantiate()
+					var direction_to_enemy = (enemy_position - marker_2d.global_position).normalized()
+					fireball.global_position = marker_2d.global_position
+					fireball.rotation = direction_to_enemy.angle()
+					fireball.spell_type = spell_type
+					fireball.burning_time_seconds = burning_time_seconds
+					fireball.burning_damage = burning_damage
+					fireball.projectile_damage = 20
+					get_tree().root.add_child(fireball)
+					
+				1: # Ice-shard
+					var ice_shard = SPELL_PROJECTILE.instantiate()
+					var direction_to_enemy = (enemy_position - marker_2d.global_position).normalized()
+					ice_shard.global_position = marker_2d.global_position
+					ice_shard.rotation = direction_to_enemy.angle()
+					ice_shard.spell_type = spell_type
+					ice_shard.freezing_time_seconds = freezing_time_seconds
+					ice_shard.projectile_damage = 5
+					get_tree().root.add_child(ice_shard)
+			
 		
 
 

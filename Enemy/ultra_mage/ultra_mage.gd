@@ -18,6 +18,20 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	for effect in status_effects.keys():
+		if status_effects[effect] > 0:
+			status_effects[effect] -= delta
+			
+			match effect:
+				"burning":
+					apply_burning()
+				#"freezing":
+					#apply_freezing()
+	
+	if(status_effects["freezing"] == 0.0):
+		unapply_freezing()
+	
 	if not player_in_range:
 		move_towards_player()
 	elif ready_to_fire:
