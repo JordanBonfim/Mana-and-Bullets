@@ -38,7 +38,6 @@ func get_projectile_damage() -> float:
 
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
-	print(body.get_parent())
 	
 	#var smoke = smokeScene.instantiate() as GPUParticles2D
 	#get_parent().add_child(smoke)

@@ -70,7 +70,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_fmjot"]
 resource_name = "hit"
-length = 0.19999999999999998
+length = 0.2
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -114,7 +114,7 @@ libraries/ = SubResource("AnimationLibrary_i64ad")
 collision_layer = 4
 collision_mask = 40
 
-[node name="hurt_box" type="CollisionShape2D" parent="Area2D" unique_id=1403552380]
+[node name="Hurt_box" type="CollisionShape2D" parent="Area2D" unique_id=1403552380]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_sjk5h")
 
