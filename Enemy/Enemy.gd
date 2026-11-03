@@ -28,6 +28,7 @@ var xp_drop: float
 @onready var hurt_box: CollisionShape2D = $Area2D/Hurt_box
 @onready var hit_flash_animation: AnimationPlayer = $HitFlashAnimation
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var damage_number_position: Node2D = $DamageNumberPosition
 
 var status_effects: Dictionary = {
 	"burning": 0.0, # seconds duration
@@ -127,7 +128,7 @@ func update_facing_direction() -> void:
 func take_damage(damage: float) -> void:
 	hp -= damage
 	hit_flash_animation.play("hit")
-
+	DamageNumbersSpawner.display_number(damage, damage_number_position.global_position, false)
 	if hp <= 0:
 		die()
 
@@ -154,7 +155,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		match spell_type:
 			0: # Fireball
 				status_effects["burning"] = parent.get_burning_time()
-				status_effects["burning"] = parent.get_burning_damage()
+				status_effects_ammount["burning"] = parent.get_burning_damage()
+				print("Burning ", parent.get_burning_damage())
 				burning_damage_timer = 0.0
 				
 			1: # Ice-shard

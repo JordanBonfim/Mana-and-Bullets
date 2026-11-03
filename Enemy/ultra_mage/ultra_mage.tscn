@@ -10,8 +10,9 @@ shader = ExtResource("2_p8c4f")
 shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
 shader_parameter/hit_flash_on = false
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjk5h"]
-size = Vector2(20, 30)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h55f7"]
+radius = 6.75
+height = 25.0
 
 [sub_resource type="Animation" id="Animation_i7gww"]
 length = 0.001
@@ -98,7 +99,7 @@ _data = {
 [node name="UltraMage" type="CharacterBody2D" unique_id=342270267]
 scale = Vector2(4, 4)
 collision_layer = 4
-collision_mask = 40
+collision_mask = 44
 script = ExtResource("1_i7gww")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=538671649]
@@ -108,8 +109,8 @@ hframes = 10
 vframes = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1403552380]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_sjk5h")
+position = Vector2(0.5, 0)
+shape = SubResource("CapsuleShape2D_h55f7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1990479551]
 libraries/ = SubResource("AnimationLibrary_i64ad")
@@ -119,6 +120,7 @@ collision_layer = 4
 collision_mask = 32
 
 [node name="Hurt_box" type="CollisionShape2D" parent="Area2D" unique_id=1032298977]
+visible = false
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_bhunq")
 
@@ -133,9 +135,12 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_bhunq")
 
 [node name="firing_timer" type="Timer" parent="." unique_id=529321263]
+wait_time = 1.6999999999999997
 
 [node name="HitFlashAnimation" type="AnimationPlayer" parent="." unique_id=1801138147]
 libraries/ = SubResource("AnimationLibrary_ptr8q")
+
+[node name="DamageNumberPosition" type="Node2D" parent="." unique_id=754348465]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="fire_range" to="." method="_on_fire_range_area_entered"]

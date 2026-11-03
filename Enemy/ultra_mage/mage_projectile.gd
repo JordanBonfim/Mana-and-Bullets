@@ -4,7 +4,7 @@ extends Node2D
 
 @onready var projectile_lifetime: Timer = $projectile_lifetime
 
-@export var SPEED : int = 800
+@export var SPEED : int = 450
 @export var ttl : float = 2 #time to live
 @export var projectile_damage : float = 15
 @export var piercing_ammount : int = 1

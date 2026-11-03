@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 [autoload]
 
 Messages="*uid://qfoucb2us3ub"
+DamageNumbersSpawner="*uid://g5wuk65gep50"
 
 [display]
 
