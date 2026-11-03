@@ -30,16 +30,17 @@ var xp_drop: float
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var status_effects: Dictionary = {
-	"burning": 0.0,
+	"burning": 0.0, # seconds duration
 	"freezing": 0.0,
 	"poison": 0.0
 }
 
 var status_effects_ammount: Dictionary = {
-	"burning": 0.0,
-	"freezing": 0.0,
-	"poison": 0.0
+	"burning": 0.0, #damage
+	"poison": 0.0 # damage
 }
+var burning_damage_timer: float = 0.0
+
 
 func _ready() -> void:
 	animation_player.play("walk")
@@ -75,15 +76,13 @@ func spawn_around_player() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	
-		
 	for effect in status_effects.keys():
 		if status_effects[effect] > 0:
 			status_effects[effect] -= delta
 			
 			match effect:
 				"burning":
-					apply_burning()
+					apply_burning(delta)
 				#"freezing":
 					#apply_freezing()
 	
@@ -92,9 +91,15 @@ func _physics_process(delta: float) -> void:
 	
 	move_towards_player()
 
-func apply_burning() -> void:
+func apply_burning(delta: float) -> void:
 	if(hp>0):
-		take_damage(status_effects_ammount["burning"])
+		status_effects["burning"]
+			
+		burning_damage_timer += delta
+
+		if burning_damage_timer >= 0.5:
+			take_damage(status_effects_ammount["burning"])
+			burning_damage_timer -= 0.5
 
 func unapply_freezing() -> void:
 	speed = original_speed
@@ -150,6 +155,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			0: # Fireball
 				status_effects["burning"] = parent.get_burning_time()
 				status_effects["burning"] = parent.get_burning_damage()
+				burning_damage_timer = 0.0
 				
 			1: # Ice-shard
 				if(status_effects["freezing"] >= 0.0):

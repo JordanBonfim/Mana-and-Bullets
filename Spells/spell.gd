@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 					fireball.spell_type = spell_type
 					fireball.burning_time_seconds = burning_time_seconds
 					fireball.burning_damage = burning_damage
-					fireball.projectile_damage = 20
+					fireball.projectile_damage = 1
 					get_tree().root.add_child(fireball)
 					
 				1: # Ice-shard
