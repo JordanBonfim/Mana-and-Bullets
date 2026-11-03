@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://bvefundn4vltu" path="res://Spells/Fireball/fireball6.png" id="7_7ogsp"]
 [ext_resource type="Texture2D" uid="uid://dj1dffidmglww" path="res://Spells/Fireball/fireball7.png" id="8_kca17"]
 [ext_resource type="Texture2D" uid="uid://ccyugbc7bmi8v" path="res://Spells/Fireball/fireball8.png" id="9_gydyo"]
+[ext_resource type="Texture2D" uid="uid://c6u7djpe8yw2e" path="res://Spells/IceShards/ice-shard1.png" id="10_taf4a"]
+[ext_resource type="Texture2D" uid="uid://rx6vhidbn26w" path="res://Spells/IceShards/ice-shard2.png" id="11_0yviy"]
+[ext_resource type="Texture2D" uid="uid://cbfvy3780ojs5" path="res://Spells/IceShards/ice-shard3.png" id="12_7ogsp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bhunq"]
 animations = [{
@@ -38,8 +41,22 @@ animations = [{
 "texture": ExtResource("9_gydyo")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"fireball",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_taf4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_0yviy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7ogsp")
+}],
+"loop": 1,
+"name": &"ice-shard",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
@@ -51,7 +68,8 @@ script = ExtResource("1_kcfer")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=219799833]
 position = Vector2(-1, -1)
 sprite_frames = SubResource("SpriteFrames_bhunq")
-frame_progress = 0.15770258
+animation = &"fireball"
+frame_progress = 0.26435006
 
 [node name="Projectile_lifetime" type="Timer" parent="." unique_id=41050234]
 
@@ -60,6 +78,7 @@ collision_layer = 32
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1639962294]
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_bhunq")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

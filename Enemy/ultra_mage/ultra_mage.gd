@@ -18,6 +18,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	
 	if not player_in_range:
 		move_towards_player()
 	elif ready_to_fire:

@@ -74,7 +74,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_fmjot"]
 resource_name = "hit"
-length = 0.19999999999999998
+length = 0.2
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -125,6 +125,7 @@ shape = SubResource("RectangleShape2D_bhunq")
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1518966717]
 
 [node name="fire_range" type="Area2D" parent="." unique_id=1653920452]
+visible = false
 collision_layer = 128
 collision_mask = 2
 

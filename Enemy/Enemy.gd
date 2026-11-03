@@ -1,8 +1,8 @@
 class_name Enemy
 extends CharacterBody2D
 
-@export var speed: float = 200
-
+@export var original_speed: float = 200
+@export var speed: float = original_speed
 var Player: Node2D
 var direction: Vector2 = Vector2.ZERO
 var is_facing_left: bool = false
@@ -28,6 +28,18 @@ var xp_drop: float
 @onready var hurt_box: CollisionShape2D = $Area2D/Hurt_box
 @onready var hit_flash_animation: AnimationPlayer = $HitFlashAnimation
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+var status_effects: Dictionary = {
+	"burning": 0.0, # seconds duration
+	"freezing": 0.0,
+	"poison": 0.0
+}
+
+var status_effects_ammount: Dictionary = {
+	"burning": 0.0, #damage
+	"poison": 0.0 # damage
+}
+var burning_damage_timer: float = 0.0
 
 
 func _ready() -> void:
@@ -64,9 +76,34 @@ func spawn_around_player() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	for effect in status_effects.keys():
+		if status_effects[effect] > 0:
+			status_effects[effect] -= delta
+			
+			match effect:
+				"burning":
+					apply_burning(delta)
+				#"freezing":
+					#apply_freezing()
+	
+	if(status_effects["freezing"] == 0.0):
+		unapply_freezing()
+	
 	move_towards_player()
 
+func apply_burning(delta: float) -> void:
+	if(hp>0):
+		status_effects["burning"]
+			
+		burning_damage_timer += delta
 
+		if burning_damage_timer >= 0.5:
+			take_damage(status_effects_ammount["burning"])
+			burning_damage_timer -= 0.5
+
+func unapply_freezing() -> void:
+	speed = original_speed
+	
 func move_towards_player() -> void:
 	if abs(Player.global_position.x - global_position.x) > 5:
 		direction = (Player.global_position - global_position).normalized()
@@ -99,7 +136,7 @@ func die() -> void:
 	hurt_box.set_deferred("disabled", true)
 	sprite_2d.visible = false
 
-	Messages.add_xp.emit(xp_drop)
+	#Messages.add_xp.emit(xp_drop)
 	queue_free()
 
 
@@ -107,5 +144,21 @@ func die() -> void:
 	#animation_player.play("walk")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.get_parent().has_method("get_damage"):
-		take_damage(area.get_parent().get_damage())
+	var parent = area.get_parent()
+	if parent.has_method("get_damage"):
+		take_damage(parent.get_damage())
+	
+	if parent.has_method("get_spell_type"):
+
+		var spell_type:int = parent.get_spell_type()
+		match spell_type:
+			0: # Fireball
+				status_effects["burning"] = parent.get_burning_time()
+				status_effects["burning"] = parent.get_burning_damage()
+				burning_damage_timer = 0.0
+				
+			1: # Ice-shard
+				if(status_effects["freezing"] >= 0.0):
+					speed = (speed * 60/100)
+				status_effects["freezing"] = parent.get_freezing_time()
+	
