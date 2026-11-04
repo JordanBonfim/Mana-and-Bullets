@@ -9,6 +9,11 @@ extends CanvasLayer
 
 @onready var xp_bar: TextureProgressBar = $Control/xp_bar
 @onready var level_label: Label = $Control/Level_label
+@onready var fps_label: Label = $Control/FPS_label
+@onready var life_container: HBoxContainer = $Control/Life_container
+const HEART = preload("uid://bc5rbt6ehg1kl")
+
+@export var hearts: Array = [] 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,11 +21,15 @@ func _ready() -> void:
 	Messages.increase_wave.connect(increase_wave_label)
 	Messages.xp_changed.connect(xp_bar_update)
 	Messages.leveled_up.connect(update_level_label)
+	
+	Messages.player_hit.connect(remove_heart)
+	Messages.add_health.connect(add_heart)
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	fps_label.text = str("FPS: ",Engine.get_frames_per_second())
 	pass
 
 func update_health_bar(hp: float, max_hp: float) -> void:
@@ -38,4 +47,25 @@ func xp_bar_update(new_xp, xp_to_next) -> void:
 	xp_bar.value = new_xp
 	#print("BAR VALUE:", xp_bar.value)
 	#print("BAR max VALUE:", xp_bar.max_value)
+	
+	
+func add_heart(ammount: int) -> void:
+	#hearts.append(heart)
+	print("criadno heart")
+	var heart = HEART.instantiate()
+	life_container.add_child(heart)
+	
+	
+func remove_heart(ammount: int) -> void:
+	print("aaaaaaa", ammount)
+	for i in range(0, ammount):
+		print("i:", i)
+		life_container.get_child(-1).queue_free()
+	
+	
+	
+	
+	
+	
+	
 	

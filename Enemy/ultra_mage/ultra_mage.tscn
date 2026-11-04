@@ -135,7 +135,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_bhunq")
 
 [node name="firing_timer" type="Timer" parent="." unique_id=529321263]
-wait_time = 1.6999999999999997
+wait_time = 1.6999999999999995
 
 [node name="HitFlashAnimation" type="AnimationPlayer" parent="." unique_id=1801138147]
 libraries/ = SubResource("AnimationLibrary_ptr8q")

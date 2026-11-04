@@ -7,15 +7,15 @@ var Player: Node2D
 var direction: Vector2 = Vector2.ZERO
 var is_facing_left: bool = false
 
+
 #region ENEMY STATS
 
 @export var base_max_hp: float = 20
-@export var base_damage_to_player: float = 10
+@export var base_damage_to_player: int = 1
 @export var base_xp_drop: float = 10
-
 var hp: float
 var max_hp: float
-var damage_to_player: float
+var damage_to_player: int = 1
 var xp_drop: float
 
 @export var growth_factor: float = 1
@@ -53,7 +53,7 @@ func calculate_stats() -> void:
 	if wave_number <= 1:
 		max_hp = base_max_hp
 		hp = max_hp
-		damage_to_player = base_damage_to_player
+		#damage_to_player = base_damage_to_player
 		xp_drop = base_xp_drop
 		return
 
@@ -61,7 +61,7 @@ func calculate_stats() -> void:
 
 	max_hp = base_max_hp * multiplier
 	hp = max_hp
-	damage_to_player = base_damage_to_player * multiplier
+	#damage_to_player = base_damage_to_player * multiplier
 	xp_drop = base_xp_drop * multiplier * ((quadratic_multiplier - 0.1) / quadratic_multiplier)
 
 

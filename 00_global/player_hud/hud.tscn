@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://dqvoafn6r7d0l"]
 
 [ext_resource type="Script" uid="uid://cwcj1smdovqbv" path="res://00_global/player_hud/player_hud.gd" id="1_qdo0b"]
+[ext_resource type="FontFile" uid="uid://bnstfi30c3lka" path="res://GeistPixel-Regular-VariableFont_ELSH.ttf" id="2_aav40"]
 [ext_resource type="Texture2D" uid="uid://dkaqi52jv0ymb" path="res://00_global/player_hud/assets/xp_bar_back.png" id="2_j3ycr"]
 [ext_resource type="Texture2D" uid="uid://u1qx2ogb2ksa" path="res://00_global/player_hud/assets/xp_bar.png" id="3_aav40"]
 [ext_resource type="Texture2D" uid="uid://bu16nmuyeyy4o" path="res://00_global/player_hud/assets/xp_bar_fill.png" id="4_e3l4t"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_j3ycr"]
+font = ExtResource("2_aav40")
+font_size = 12
+
 [sub_resource type="LabelSettings" id="LabelSettings_omn1t"]
+font = ExtResource("2_aav40")
 font_size = 22
 
 [node name="Hud" type="CanvasLayer" unique_id=1644129635]
@@ -19,22 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=337472151]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Control" unique_id=1433972311]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1675531536]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Wave_counter" type="Label" parent="Control" unique_id=1933018403]
+[node name="FPS_label" type="Label" parent="Control" unique_id=998024697]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -42,8 +33,41 @@ anchor_right = 1.0
 offset_left = -176.0
 offset_bottom = 81.0
 grow_horizontal = 0
+text = "FPS:"
+label_settings = SubResource("LabelSettings_j3ycr")
+horizontal_alignment = 2
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=337472151]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control" unique_id=1433972311]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1675531536]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Wave_counter" type="Label" parent="Control" unique_id=1933018403]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.0
+offset_right = 88.0
+offset_bottom = 81.0
+grow_horizontal = 2
 text = "WAVE: 1"
 label_settings = SubResource("LabelSettings_omn1t")
+horizontal_alignment = 1
 uppercase = true
 
 [node name="Level_label" type="Label" parent="Control" unique_id=152552196]
@@ -78,3 +102,11 @@ stretch_margin_right = 2
 texture_under = ExtResource("2_j3ycr")
 texture_over = ExtResource("3_aav40")
 texture_progress = ExtResource("4_e3l4t")
+
+[node name="Life_container" type="HBoxContainer" parent="Control" unique_id=797370337]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+layout_direction = 2
+theme_override_constants/separation = 64

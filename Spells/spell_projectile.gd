@@ -5,7 +5,7 @@ extends Node2D
 @export var ttl : float = 2 #time to live
 @export var projectile_damage : float = 30
 @export var piercing_ammount : int = 1
-@export var projectile_speed : int = 800
+@export var projectile_speed : int = 200
 
 @export var spell_type : int = 0
 var animation_name: String = ""

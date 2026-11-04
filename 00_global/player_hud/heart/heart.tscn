@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bc5rbt6ehg1kl"]
+
+[ext_resource type="Texture2D" uid="uid://dby85ocwu8nnw" path="res://00_global/player_hud/heart/health_icon1.png" id="1_imv3l"]
+[ext_resource type="Texture2D" uid="uid://8ff6dd20jjdl" path="res://00_global/player_hud/heart/health_icon2.png" id="2_n6lni"]
+[ext_resource type="Texture2D" uid="uid://bvf54k6alybs1" path="res://00_global/player_hud/heart/health_icon3.png" id="3_mnuyy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sjk5h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_imv3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n6lni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mnuyy")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Heart" type="Control" unique_id=2139337413]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=508409975]
+position = Vector2(32, 32)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_sjk5h")
+autoplay = "default"
+frame_progress = 0.42013517

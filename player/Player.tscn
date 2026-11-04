@@ -11,8 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://pwejq765884d" path="res://player/sprites/run/RUN3.png" id="10_y617q"]
 [ext_resource type="Texture2D" uid="uid://b8wamxmvxm6cp" path="res://player/sprites/run/RUN4.png" id="11_8eyfg"]
 [ext_resource type="Texture2D" uid="uid://cch3m30wpqgpy" path="res://player/sprites/run/RUN5.png" id="12_76mgg"]
-[ext_resource type="Texture2D" uid="uid://dxl2puv8se5gl" path="res://player/sprites/run/WALK2.png" id="13_ddnt4"]
-[ext_resource type="Texture2D" uid="uid://byxw72c6yy3ni" path="res://player/sprites/run/WALK3.png" id="14_a0lmo"]
 [ext_resource type="Texture2D" uid="uid://7cxqorecb2ia" path="res://player/sprites/walk/WALK4.png" id="15_234y4"]
 [ext_resource type="Texture2D" uid="uid://cenoh3688xdg3" path="res://player/sprites/walk/WALK5.png" id="16_u8vxv"]
 [ext_resource type="Texture2D" uid="uid://cse02lwrgxixy" path="res://player/sprites/walk/WALK6.png" id="17_lhjxl"]
@@ -64,12 +62,6 @@ animations = [{
 }, {
 "duration": 0.5,
 "texture": ExtResource("12_76mgg")
-}, {
-"duration": 0.5,
-"texture": ExtResource("13_ddnt4")
-}, {
-"duration": 0.5,
-"texture": ExtResource("14_a0lmo")
 }],
 "loop": 1,
 "name": &"run",
@@ -166,7 +158,8 @@ visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=760288915]
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"walk"
+animation = &"run"
+frame_progress = 0.024004657
 
 [node name="CPUParticles2D3" type="CPUParticles2D" parent="AnimatedSprite2D" unique_id=262957754]
 visible = false
@@ -199,6 +192,6 @@ collision_mask = 388
 shape = SubResource("RectangleShape2D_bhunq")
 
 [node name="Weapon_handle" type="Marker2D" parent="Area2D" unique_id=1207522416]
-position = Vector2(5, 4)
+position = Vector2(1, 4)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

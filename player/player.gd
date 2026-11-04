@@ -4,12 +4,12 @@ extends CharacterBody2D
 var player_is_facing_left: bool = false
 
 # Life
-var hp: float = 1000:
+var hp: int = 0:
 	set(value):
 		hp = clampf(value, 0, max_hp)
 		Messages.player_health_changed.emit(hp, max_hp)
 
-var max_hp: float = 1000:
+var max_hp: int = 5:
 	# Heal player every time health increases??? Think.
 	set(value):
 		max_hp = value
@@ -56,9 +56,10 @@ const SHOTGUN = preload("uid://dma1ga5m88jpj")
 
 
 func _ready() -> void:
-	Messages.player_hit.connect(set_player_health)
+	Messages.player_hit.connect(take_damage)
 	Messages.add_xp.connect(add_xp)
 	Messages.spell_selected.connect(add_spell)
+	Messages.add_health.connect(add_health)
 	
 	var weapon_instance = SHOTGUN.instantiate()
 	match weapon_selected:
@@ -69,6 +70,10 @@ func _ready() -> void:
 			
 	weapon_instance.global_position = weapon_handle.position
 	add_child(weapon_instance)
+	
+	for i in range(0,max_hp-1):
+		print("emitindo 1")
+		Messages.add_health.emit(1)
 	
 
 
@@ -150,8 +155,11 @@ func atualizar_animacao(input_direction: Vector2) -> void:
 		animated_sprite.play("walk")
 
 
-func set_player_health(health: float) -> void:
-	hp = health
+func take_damage(damage: int) -> void:
+	hp -= damage
+	if hp <= 0:
+		print("JOGADOR MORREU")
+		get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
 
 
 func _check_level_up() -> void:
@@ -197,13 +205,14 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().has_method("get_melee_damage") or area.get_parent().has_method("get_projectile_damage"):
 		var node = area.get_parent() as Node
 		if area.get_parent().has_method("get_melee_damage"):
-			hp -= node.get_melee_damage()
+			#hp -= node.get_melee_damage()
+			Messages.player_hit.emit(node.get_melee_damage())
 		elif area.get_parent().has_method("get_projectile_damage"):
-			hp -= node.get_projectile_damage()
+			#hp -= node.get_projectile_damage()
+			Messages.player_hit.emit(node.get_projectile_damage())
 			
-		if hp <= 0:
-			print("JOGADOR MORREU")
-			get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
+			
+		
 	
 
 # SPELLS
@@ -214,3 +223,9 @@ func add_spell(spell_type: int) -> void:
 	spell.spell_type = spell_type 
 	add_child(spell)
 			
+		
+func add_health(ammount: int) -> void:
+	if (hp+ammount)<max_hp:
+		hp += ammount
+	else:
+		hp = max_hp
