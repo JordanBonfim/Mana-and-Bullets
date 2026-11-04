@@ -57,9 +57,7 @@ func add_heart(ammount: int) -> void:
 	
 	
 func remove_heart(ammount: int) -> void:
-	print("aaaaaaa", ammount)
 	for i in range(0, ammount):
-		print("i:", i)
 		life_container.get_child(-1).queue_free()
 	
 	

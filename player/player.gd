@@ -4,6 +4,7 @@ extends CharacterBody2D
 var player_is_facing_left: bool = false
 
 # Life
+var invincible:bool = false
 var hp: int = 0:
 	set(value):
 		hp = clampf(value, 0, max_hp)
@@ -40,7 +41,10 @@ const SPELL = preload("uid://c82n8qwqthm6b")
 var weapon_selected: int = 1
 const MACHINE_PISTOL = preload("uid://csuqu0tfehvuc")
 const SHOTGUN = preload("uid://dma1ga5m88jpj")
+
+
 @onready var weapon_handle: Marker2D = $Area2D/Weapon_handle
+@onready var invicible_timer: Timer = $Invicible_timer
 
 
 #endregion
@@ -56,7 +60,6 @@ const SHOTGUN = preload("uid://dma1ga5m88jpj")
 
 
 func _ready() -> void:
-	Messages.player_hit.connect(take_damage)
 	Messages.add_xp.connect(add_xp)
 	Messages.spell_selected.connect(add_spell)
 	Messages.add_health.connect(add_health)
@@ -156,7 +159,14 @@ func atualizar_animacao(input_direction: Vector2) -> void:
 
 
 func take_damage(damage: int) -> void:
+	if(invincible):
+		return
+	
 	hp -= damage
+	invicible_timer.start()
+	invincible = true
+	Messages.player_hit.emit(damage)
+	
 	if hp <= 0:
 		print("JOGADOR MORREU")
 		get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
@@ -206,10 +216,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var node = area.get_parent() as Node
 		if area.get_parent().has_method("get_melee_damage"):
 			#hp -= node.get_melee_damage()
-			Messages.player_hit.emit(node.get_melee_damage())
+			take_damage(node.get_melee_damage())
 		elif area.get_parent().has_method("get_projectile_damage"):
 			#hp -= node.get_projectile_damage()
-			Messages.player_hit.emit(node.get_projectile_damage())
+			take_damage(node.get_projectile_damage())
 			
 			
 		
@@ -229,3 +239,7 @@ func add_health(ammount: int) -> void:
 		hp += ammount
 	else:
 		hp = max_hp
+
+
+func _on_invicible_timer_timeout() -> void:
+	invincible = false

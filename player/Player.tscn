@@ -194,4 +194,7 @@ shape = SubResource("RectangleShape2D_bhunq")
 [node name="Weapon_handle" type="Marker2D" parent="Area2D" unique_id=1207522416]
 position = Vector2(1, 4)
 
+[node name="Invicible_timer" type="Timer" parent="." unique_id=416167039]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Invicible_timer" to="." method="_on_invicible_timer_timeout"]
