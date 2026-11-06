@@ -11,6 +11,9 @@ func _ready() -> void:
 	audio_stream_player.play(0)
 	Messages.leveled_up.connect(pause_game)
 	Messages.upgrade_selected.connect(unpause_game)
+	
+	Messages.game_paused.connect(pause_game)
+	Messages.game_unpaused.connect(unpause_game)
 	pass # Replace with function body.
 
 

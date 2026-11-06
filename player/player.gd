@@ -91,7 +91,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE:
-			get_tree().paused = !get_tree().paused
+			Messages.game_paused.emit()
+			get_tree().paused = true
 			
 		# Controles de teste de HP e SPEED nas teclas - e +:
 		# Ctrl + tecla = altera SPEED | Shift + tecla = altera max_hp | Tecla pura = altera hp

@@ -52,3 +52,10 @@ signal upgrade_selected()
 # Spells
 @warning_ignore("unused_signal")
 signal spell_selected(index)
+
+# PAUSING GAME
+@warning_ignore("unused_signal")
+signal game_paused()
+
+@warning_ignore("unused_signal")
+signal game_unpaused()
