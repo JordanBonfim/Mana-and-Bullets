@@ -31,6 +31,8 @@ var max_hp: int = 5:
 @export var quadratic_multiplier: float = 0.22
 	
 	
+@export var enemies_inside_hurtbox: Array = []
+	
 # SPELLS
 const SPELL = preload("uid://c82n8qwqthm6b")
 
@@ -161,10 +163,10 @@ func atualizar_animacao(input_direction: Vector2) -> void:
 func take_damage(damage: int) -> void:
 	if(invincible):
 		return
+	invincible = true
 	
 	hp -= damage
 	invicible_timer.start()
-	invincible = true
 	Messages.player_hit.emit(damage)
 	
 	if hp <= 0:
@@ -215,12 +217,19 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().has_method("get_melee_damage") or area.get_parent().has_method("get_projectile_damage"):
 		var node = area.get_parent() as Node
 		if area.get_parent().has_method("get_melee_damage"):
+			enemies_inside_hurtbox.append(area.get_parent())
 			#hp -= node.get_melee_damage()
 			take_damage(node.get_melee_damage())
 		elif area.get_parent().has_method("get_projectile_damage"):
 			#hp -= node.get_projectile_damage()
 			take_damage(node.get_projectile_damage())
-			
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if area.get_parent().has_method("get_melee_damage") or area.get_parent().has_method("get_projectile_damage"):
+		var node = area.get_parent() as Node
+		if area.get_parent().has_method("get_melee_damage"):
+			enemies_inside_hurtbox.erase(area.get_parent()) 		
 			
 		
 	
@@ -243,3 +252,5 @@ func add_health(ammount: int) -> void:
 
 func _on_invicible_timer_timeout() -> void:
 	invincible = false
+	for enemy in enemies_inside_hurtbox:
+		take_damage(enemy.get_melee_damage())

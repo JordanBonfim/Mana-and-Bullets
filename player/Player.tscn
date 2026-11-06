@@ -195,6 +195,8 @@ shape = SubResource("RectangleShape2D_bhunq")
 position = Vector2(1, 4)
 
 [node name="Invicible_timer" type="Timer" parent="." unique_id=416167039]
+wait_time = 0.8
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="timeout" from="Invicible_timer" to="." method="_on_invicible_timer_timeout"]
