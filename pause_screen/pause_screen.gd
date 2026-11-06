@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 @onready var resume_button: Button = $Control/VBoxContainer/resume_button
+@onready var options_button: Button = $Control/VBoxContainer/options_button
+@onready var back_to_menu_button: Button = $Control/VBoxContainer/back_to_menu_button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,4 +27,15 @@ func game_unpaused() -> void:
 
 func _on_resume_button_pressed() -> void:
 	Messages.game_unpaused.emit()
+	pass # Replace with function body.
+
+
+func _on_options_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_back_to_menu_button_pressed() -> void:
+	Messages.game_unpaused.emit()
+	get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
+	
 	pass # Replace with function body.

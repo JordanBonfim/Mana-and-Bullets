@@ -56,9 +56,16 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "RESUME"
 
-[node name="Button2" type="Button" parent="Control/VBoxContainer" unique_id=336843017]
+[node name="options_button" type="Button" parent="Control/VBoxContainer" unique_id=336843017]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "OPTIONS"
 
+[node name="back_to_menu_button" type="Button" parent="Control/VBoxContainer" unique_id=1003054467]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "SURRENDER"
+
 [connection signal="pressed" from="Control/VBoxContainer/resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/options_button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]
