@@ -210,6 +210,11 @@ layout_mode = 2
 text = "Settings
 "
 
+[node name="ExitGameButton" type="Button" parent="Control/MainMenu" unique_id=1319622598]
+unique_name_in_owner = true
+layout_mode = 2
+text = "EXIT GAME"
+
 [node name="SettingsMenu" type="VBoxContainer" parent="Control" unique_id=1324869122]
 unique_name_in_owner = true
 layout_mode = 1
@@ -264,3 +269,5 @@ text = "Resolution:"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[connection signal="pressed" from="Control/MainMenu/ExitGameButton" to="." method="_on_exit_game_button_pressed"]

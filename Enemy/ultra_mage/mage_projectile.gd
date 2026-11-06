@@ -37,15 +37,8 @@ func get_projectile_damage() -> float:
 	return projectile_damage
 
 
-func _on_hurt_box_body_entered(body: Node2D) -> void:
-	
-	#var smoke = smokeScene.instantiate() as GPUParticles2D
-	#get_parent().add_child(smoke)
-	#smoke.global_position = position
-	#smoke.rotation = rotation
- 	
+func _on_hurt_box_area_entered(area: Area2D) -> void:
 	
 	piercing_ammount-=1
 	if(piercing_ammount==0):
 		queue_free()
-		

@@ -38,4 +38,3 @@ func _on_back_to_menu_button_pressed() -> void:
 	Messages.game_unpaused.emit()
 	get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
 	
-	pass # Replace with function body.

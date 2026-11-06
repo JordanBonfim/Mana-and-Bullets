@@ -83,3 +83,4 @@ sprite_frames = SubResource("SpriteFrames_bhunq")
 frame_progress = 0.7756843
 
 [connection signal="timeout" from="projectile_lifetime" to="." method="_on_projectile_lifetime_timeout"]
+[connection signal="area_entered" from="hurt_box" to="." method="_on_hurt_box_area_entered"]
