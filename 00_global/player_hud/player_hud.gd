@@ -12,6 +12,7 @@ extends CanvasLayer
 @onready var fps_label: Label = $Control/FPS_label
 @onready var life_container: HBoxContainer = $Control/Life_container
 const HEART = preload("uid://bc5rbt6ehg1kl")
+@onready var ammo_label: Label = $Control/ammo_label
 
 @export var hearts: Array = [] 
 
@@ -24,8 +25,8 @@ func _ready() -> void:
 	
 	Messages.player_hit.connect(remove_heart)
 	Messages.add_health.connect(add_heart)
-	pass
-
+	
+	Messages.ammo_changed.connect(change_ammo)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -60,7 +61,9 @@ func remove_heart(ammount: int) -> void:
 	for i in range(0, ammount):
 		life_container.get_child(-1).queue_free()
 	
-	
+
+func change_ammo(current_ammo: int, max_ammo:int) -> void:
+	ammo_label.text = str(current_ammo,"/",max_ammo)
 	
 	
 	

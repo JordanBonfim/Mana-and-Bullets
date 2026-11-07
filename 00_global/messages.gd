@@ -26,7 +26,7 @@ signal leveled_up(new_level, levels_gained)
 signal xp_changed(current_xp, xp_to_next)
 
 @warning_ignore("unused_signal")
-signal add_xp(ammount: int)
+signal add_xp(current_ammo: int, max_ammo: int)
 
 
 # Upgrades
@@ -59,3 +59,9 @@ signal game_paused()
 
 @warning_ignore("unused_signal")
 signal game_unpaused()
+
+
+# AMMO
+
+@warning_ignore("unused_signal")
+signal ammo_changed(ammount)

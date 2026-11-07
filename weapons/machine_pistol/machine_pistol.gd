@@ -13,16 +13,24 @@ const BULLET = preload("uid://c1jarv1c2wevn")
 @export var bullet_piercing_ammount: int = 1
 @export var bullet_spread: float = 0.0
 @export var projectiles_count: int = 1
+@export var magazine_size: int = 9
+@export var currentAmmo: int = 9  
+@export var bullets_consumed_per_shot: int = 1
 
 @onready var muzzle: Marker2D = $muzzle
 @onready var fire_cooldown: Timer = $fire_cooldown
 @onready var firing_soundplayer: AudioStreamPlayer = $firing_soundplayer
 
 var ready_to_fire: bool = true
+@onready var reload_timer: Timer = $reload_timer
+
 #endregion
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
+	animated_sprite_2d.play("default")
+	
 	fire_cooldown.wait_time = fire_delay_seconds
 	fire_cooldown.one_shot = true
 	
@@ -36,8 +44,9 @@ func _ready() -> void:
 	Messages.apply_percentage_bullet_damage_upgrade.connect(increase_damage_percentage)
 	Messages.apply_fixed_bullet_damage_upgrade.connect(increase_damage_fixed)
 	Messages.increase_projectiles_ammount_upgrade.connect(increase_projectiles_ammount)
-
-
+	
+	Messages.ammo_changed.emit(currentAmmo,magazine_size)
+	
 func _physics_process(_delta: float) -> void:
 	# Rotação da arma apontando para o mouse
 	look_at(get_global_mouse_position())
@@ -52,6 +61,16 @@ func _physics_process(_delta: float) -> void:
 
 
 func shoot() -> void:
+	
+	if (currentAmmo<=0):
+		if(reload_timer.is_stopped()):
+			animated_sprite_2d.play("reload")
+			reload_timer.start()
+		return
+	
+	currentAmmo -= bullets_consumed_per_shot
+	Messages.ammo_changed.emit(currentAmmo,magazine_size)
+		
 	ready_to_fire = false
 	fire_cooldown.start()
 	
@@ -123,3 +142,10 @@ func increase_projectiles_ammount(ammount: int) -> void:
 		bullet_spread += 0.12
 	projectiles_count += ammount
 #endregion
+
+
+func _on_reload_timer_timeout() -> void:
+	animated_sprite_2d.play("default")
+	currentAmmo = magazine_size
+	Messages.ammo_changed.emit(currentAmmo,magazine_size)
+	

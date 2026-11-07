@@ -110,3 +110,12 @@ anchor_right = 1.0
 grow_horizontal = 2
 layout_direction = 2
 theme_override_constants/separation = 64
+
+[node name="ammo_label" type="Label" parent="Control" unique_id=576905344]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 74.0
+offset_right = 93.0
+offset_bottom = 125.0
+theme_override_font_sizes/font_size = 32
+text = "9/9"

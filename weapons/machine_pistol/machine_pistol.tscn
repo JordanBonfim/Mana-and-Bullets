@@ -2,13 +2,52 @@
 
 [ext_resource type="Script" uid="uid://bwdgt4i5mqdvm" path="res://weapons/machine_pistol/machine_pistol.gd" id="1_jrm7m"]
 [ext_resource type="Texture2D" uid="uid://43lsh10w8y3m" path="res://weapons/machine_pistol/machine_pistol_1.png" id="2_jrm7m"]
+[ext_resource type="Texture2D" uid="uid://bucrc4lwp3poj" path="res://weapons/machine_pistol/reload1.png" id="3_g5wbj"]
 [ext_resource type="AudioStream" uid="uid://c1tjcj6i7g5m7" path="res://Audio/shotgun_fire.wav" id="3_ugyf3"]
+[ext_resource type="Texture2D" uid="uid://dyvrrq0arfdgh" path="res://weapons/machine_pistol/reload2.png" id="4_fhpjx"]
+[ext_resource type="Texture2D" uid="uid://t4511tsqrifb" path="res://weapons/machine_pistol/reload3.png" id="5_p5g75"]
+[ext_resource type="Texture2D" uid="uid://b3pximnkurege" path="res://weapons/machine_pistol/reload4.png" id="6_f0y2s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sjk5h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jrm7m")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_g5wbj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fhpjx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_p5g75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_f0y2s")
+}],
+"loop": 1,
+"name": &"reload",
+"speed": 6.0
+}]
 
 [node name="MachinePistol" type="Node2D" unique_id=1305605320]
 visibility_layer = 8
 script = ExtResource("1_jrm7m")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=545884878]
+position = Vector2(7, -1)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_sjk5h")
+frame_progress = 0.9658411
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=870953946]
+visible = false
 position = Vector2(7, -1)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_jrm7m")
@@ -20,3 +59,9 @@ position = Vector2(10, -2)
 
 [node name="firing_soundplayer" type="AudioStreamPlayer" parent="." unique_id=542170107]
 stream = ExtResource("3_ugyf3")
+
+[node name="reload_timer" type="Timer" parent="." unique_id=1179860163]
+wait_time = 1.087
+one_shot = true
+
+[connection signal="timeout" from="reload_timer" to="." method="_on_reload_timer_timeout"]
