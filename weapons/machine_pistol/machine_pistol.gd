@@ -59,6 +59,14 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("fire") and ready_to_fire:
 		shoot()
 
+func _unhandled_input(event: InputEvent) -> void:
+
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_R:
+			if(currentAmmo<magazine_size):
+				if(reload_timer.is_stopped()):
+					animated_sprite_2d.play("reload")
+					reload_timer.start()
 
 func shoot() -> void:
 	
@@ -110,6 +118,7 @@ func spawn_bullet(index: int) -> void:
 	
 	get_tree().root.add_child(bullet_instance)
 
+	
 
 func spawn_smoke() -> void:
 	if not smokeScene:
