@@ -1,8 +1,89 @@
 [gd_scene format=3 uid="uid://dycegt5fdtgus"]
 
-[ext_resource type="SpriteFrames" uid="uid://dd3xfnv1tuwje" path="res://spell_sprite_frames1.tres" id="1_2j8co"]
 [ext_resource type="Script" uid="uid://bx4xajvasepo4" path="res://00_global/player_hud/spells/hud_spell.gd" id="1_k50up"]
 [ext_resource type="Texture2D" uid="uid://5ljeiycc4x5f" path="res://00_global/player_hud/spells/moldura.png" id="1_lmk0j"]
+[ext_resource type="Texture2D" uid="uid://cjnykdilaqa7j" path="res://Spells/Fireball/fireball1.png" id="2_cq0dn"]
+[ext_resource type="Texture2D" uid="uid://brrtsnthm17an" path="res://Spells/Fireball/fireball2.png" id="3_mtay6"]
+[ext_resource type="Texture2D" uid="uid://dpop2jejappdc" path="res://Spells/Fireball/fireball3.png" id="4_g6c1v"]
+[ext_resource type="Texture2D" uid="uid://1t1evj4a7d1m" path="res://Spells/Fireball/fireball4.png" id="5_gojvw"]
+[ext_resource type="Texture2D" uid="uid://cao4qnli75ye5" path="res://Spells/Fireball/fireball5.png" id="6_y7vqb"]
+[ext_resource type="Texture2D" uid="uid://bvefundn4vltu" path="res://Spells/Fireball/fireball6.png" id="7_jvawv"]
+[ext_resource type="Texture2D" uid="uid://dj1dffidmglww" path="res://Spells/Fireball/fireball7.png" id="8_vbhwo"]
+[ext_resource type="Texture2D" uid="uid://ccyugbc7bmi8v" path="res://Spells/Fireball/fireball8.png" id="9_2k880"]
+[ext_resource type="Texture2D" uid="uid://c6u7djpe8yw2e" path="res://Spells/IceShards/ice-shard1.png" id="10_3oh8o"]
+[ext_resource type="Texture2D" uid="uid://rx6vhidbn26w" path="res://Spells/IceShards/ice-shard2.png" id="11_fo8sn"]
+[ext_resource type="Texture2D" uid="uid://cbfvy3780ojs5" path="res://Spells/IceShards/ice-shard3.png" id="12_74wlg"]
+[ext_resource type="Texture2D" uid="uid://cgcp61jnhraw7" path="res://Spells/Lightning/thunder1.png" id="13_ro5qk"]
+[ext_resource type="Texture2D" uid="uid://dliyysiuse1wy" path="res://Spells/Lightning/thunder2.png" id="14_hxcwf"]
+[ext_resource type="Texture2D" uid="uid://dihtbe746may6" path="res://Spells/Lightning/thunder3.png" id="15_7bvih"]
+[ext_resource type="Texture2D" uid="uid://dhmoj7fljtqhn" path="res://Spells/Lightning/thunder4.png" id="16_ldg6e"]
+[ext_resource type="Texture2D" uid="uid://cptnoyydp1flh" path="res://Spells/Lightning/thunder5.png" id="17_1jv11"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k50up"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cq0dn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mtay6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_g6c1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gojvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y7vqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jvawv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vbhwo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2k880")
+}],
+"loop": 1,
+"name": &"fireball",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_3oh8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fo8sn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_74wlg")
+}],
+"loop": 1,
+"name": &"ice-shard",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_ro5qk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_hxcwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_7bvih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ldg6e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_1jv11")
+}],
+"loop": 1,
+"name": &"lightning",
+"speed": 13.0
+}]
 
 [node name="HudSpell" type="Control" unique_id=893380489]
 layout_mode = 3
@@ -12,11 +93,19 @@ script = ExtResource("1_k50up")
 [node name="spell_sprite" type="AnimatedSprite2D" parent="." unique_id=393727751]
 visible = false
 scale = Vector2(2, 2)
-sprite_frames = ExtResource("1_2j8co")
-animation = &"fireball"
-autoplay = "fireball"
-frame_progress = 0.6224824
+sprite_frames = SubResource("SpriteFrames_k50up")
+animation = &"lightning"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1256460644]
 scale = Vector2(2, 2)
 texture = ExtResource("1_lmk0j")
+
+[node name="cooldown_label" type="Label" parent="." unique_id=861751638]
+visible = false
+layout_mode = 0
+offset_left = -17.0
+offset_top = 2.0
+offset_right = 17.0
+offset_bottom = 41.0
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1

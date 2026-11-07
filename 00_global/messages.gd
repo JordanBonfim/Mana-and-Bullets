@@ -53,6 +53,9 @@ signal upgrade_selected()
 @warning_ignore("unused_signal")
 signal spell_selected(index)
 
+@warning_ignore("unused_signal")
+signal spell_created(spell: Node2D, spell_type: int)
+
 # PAUSING GAME
 @warning_ignore("unused_signal")
 signal game_paused()

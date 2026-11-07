@@ -35,7 +35,7 @@ func _ready() -> void:
 	
 	Messages.ammo_changed.connect(change_ammo)
 	
-	Messages.spell_selected.connect(inc_spells_assigned)
+	Messages.spell_created.connect(inc_spells_assigned)
 	
 	for i in range(spells_number):
 		var spell = HUD_SPELL.instantiate()
@@ -80,9 +80,14 @@ func change_ammo(current_ammo: int, max_ammo:int) -> void:
 	ammo_label.text = str(current_ammo,"/",max_ammo)
 	
 
-func inc_spells_assigned(index) -> void:
+
+
+
+func inc_spells_assigned(spell, spell_type) -> void:
 	var spell_frame = spell_hbox_container.get_child(assigned_spells)
 	assigned_spells+=1
-	spell_frame.set_sprite(index)
+	spell_frame.spell = spell
+	spell_frame.spell_type = spell_type
+	spell_frame.configure(spell_type)
 	
 	

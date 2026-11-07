@@ -54,8 +54,13 @@ func _ready() -> void:
 			
 			
 	spell_timer.wait_time = spell_cooldown
+	
+	Messages.spell_created.emit(self, spell_type)
 			#cpu_particles_2d.visible = true
 
+
+func get_cooldown() -> float:
+	return spell_timer.time_left
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -110,8 +115,9 @@ func _process(delta: float) -> void:
 
 
 func _on_spell_timer_timeout() -> void:
-	print("READY")
+	#print("READY")
 	ready_spell = true
+
 	
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

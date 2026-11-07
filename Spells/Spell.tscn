@@ -12,6 +12,7 @@ visible = false
 script = ExtResource("1_poaw0")
 
 [node name="spell_timer" type="Timer" parent="." unique_id=1985071287]
+one_shot = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1207056084]
 collision_layer = 512
