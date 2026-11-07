@@ -5,6 +5,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_mr5cl"]
 radius = 89.453896
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bhunq"]
+
 [node name="Spell" type="Node2D" unique_id=108929713]
 script = ExtResource("1_poaw0")
 
@@ -35,6 +37,13 @@ scale_amount_max = 8.82
 color = Color(1, 0, 0, 1)
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=560962739]
+
+[node name="spell_hurt_box_area" type="Area2D" parent="." unique_id=591658592]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spell_hurt_box_area" unique_id=689142940]
+shape = SubResource("CircleShape2D_bhunq")
 
 [connection signal="timeout" from="spell_timer" to="." method="_on_spell_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

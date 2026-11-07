@@ -23,9 +23,17 @@ const SPELL_PROJECTILE = preload("uid://be1qoo4m3tvh8")
 # ICE SHARD
 @export var freezing_time_seconds: float = 1.2
 
+# LIGHTNING
+@export var shocking_time_seconds: float = 0.4
+
+@onready var spell_hurt_box_area: Area2D = $spell_hurt_box_area
 
 var enemies_in_range: Array = []
 var random = RandomNumberGenerator.new()
+
+
+var enemies_in_damage_range: Array = []
+
 
 # area spells like aura will use this to target like all the enemies
 var how_many_enemy_targets: int = 1  
@@ -40,6 +48,10 @@ func _ready() -> void:
 		1: # Ice-shard
 			spell_cooldown = 10.0
 			spell_range.scale = spell_range.scale*2.8
+		2: # lightning
+			spell_cooldown = 8
+			spell_range.scale = spell_range.scale*2.5
+			
 			
 	spell_timer.wait_time = spell_cooldown
 			#cpu_particles_2d.visible = true
@@ -80,7 +92,20 @@ func _process(delta: float) -> void:
 					ice_shard.projectile_damage = 5
 					ice_shard.projectile_speed = 800
 					get_tree().root.add_child(ice_shard)
-			
+				
+				2: # lightning
+					var lightning = SPELL_PROJECTILE.instantiate()
+					var direction_to_enemy = (enemy_position - marker_2d.global_position).normalized()
+					lightning.global_position = enemy_position
+					lightning.rotation = direction_to_enemy.angle()
+					lightning.spell_type = spell_type
+					lightning.shocking_time_seconds = shocking_time_seconds
+					lightning.projectile_damage = 20
+					lightning.projectile_speed = 0
+					get_tree().root.add_child(lightning)
+					
+					
+					
 		
 
 

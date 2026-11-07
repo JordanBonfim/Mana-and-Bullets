@@ -21,8 +21,8 @@ var upgrades_selected : Array[int] = []
 @export var available_spells : Array[String] = [
 	"Fire-ball",
 	"Ice-shard",
-	"Venom",
-	"Thunder"
+	"Lightning",
+	"Venom"
 ]
 var spells_selected : Array[int] = []
 

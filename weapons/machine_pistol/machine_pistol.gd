@@ -63,13 +63,18 @@ func _physics_process(_delta: float) -> void:
 func shoot() -> void:
 	
 	if (currentAmmo<=0):
-		if(reload_timer.is_stopped()):
-			animated_sprite_2d.play("reload")
-			reload_timer.start()
 		return
 	
 	currentAmmo -= bullets_consumed_per_shot
+	
+	if (currentAmmo<=0):
+		if(reload_timer.is_stopped()):
+			animated_sprite_2d.play("reload")
+			reload_timer.start()
+		
+	
 	Messages.ammo_changed.emit(currentAmmo,magazine_size)
+	
 		
 	ready_to_fire = false
 	fire_cooldown.start()

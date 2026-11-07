@@ -33,7 +33,7 @@ var xp_drop: float
 var status_effects: Dictionary = {
 	"burning": 0.0, # seconds duration
 	"freezing": 0.0,
-	"poison": 0.0
+	"shocking": 0.0
 }
 
 var status_effects_ammount: Dictionary = {
@@ -75,6 +75,8 @@ func spawn_around_player() -> void:
 		sin(angle)
 	) * radius
 
+var freezing: bool = false
+var shocking: bool = false
 
 func _physics_process(delta: float) -> void:
 	for effect in status_effects.keys():
@@ -87,9 +89,14 @@ func _physics_process(delta: float) -> void:
 				#"freezing":
 					#apply_freezing()
 	
-	if(status_effects["freezing"] == 0.0):
+	if(status_effects["freezing"] <= 0.0 and freezing):
+		freezing = false
 		unapply_freezing()
-	
+		
+	if(status_effects["shocking"] <= 0.0 and shocking):
+		shocking = false
+		unapply_freezing()
+		
 	move_towards_player()
 
 func apply_burning(delta: float) -> void:
@@ -103,6 +110,9 @@ func apply_burning(delta: float) -> void:
 			burning_damage_timer -= 0.5
 
 func unapply_freezing() -> void:
+	speed = original_speed
+
+func unapply_shocking() -> void:
 	speed = original_speed
 	
 func move_towards_player() -> void:
@@ -163,4 +173,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				if(status_effects["freezing"] >= 0.0):
 					speed = (speed * 60/100)
 				status_effects["freezing"] = parent.get_freezing_time()
+				freezing = true
+			2: # Lightning
+				if(status_effects["shocking"] >= 0.0):
+					speed = 0
+				status_effects["shocking"] = parent.get_shocking_time()
+				shocking = true
 	
