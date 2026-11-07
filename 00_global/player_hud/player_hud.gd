@@ -16,6 +16,13 @@ const HEART = preload("uid://bc5rbt6ehg1kl")
 
 @export var hearts: Array = [] 
 
+const HUD_SPELL = preload("uid://dycegt5fdtgus")
+@onready var spell_hbox_container: HBoxContainer = $Control/spell_Hbox_container
+
+
+var spells_number: int = 2
+var assigned_spells: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#Messages.player_health_changed.connect(update_health_bar)
@@ -27,6 +34,13 @@ func _ready() -> void:
 	Messages.add_health.connect(add_heart)
 	
 	Messages.ammo_changed.connect(change_ammo)
+	
+	Messages.spell_selected.connect(inc_spells_assigned)
+	
+	for i in range(spells_number):
+		var spell = HUD_SPELL.instantiate()
+		spell_hbox_container.add_child(spell)
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -65,8 +79,10 @@ func remove_heart(ammount: int) -> void:
 func change_ammo(current_ammo: int, max_ammo:int) -> void:
 	ammo_label.text = str(current_ammo,"/",max_ammo)
 	
-	
-	
-	
+
+func inc_spells_assigned(index) -> void:
+	var spell_frame = spell_hbox_container.get_child(assigned_spells)
+	assigned_spells+=1
+	spell_frame.set_sprite(index)
 	
 	

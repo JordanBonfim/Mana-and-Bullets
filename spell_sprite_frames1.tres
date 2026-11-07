@@ -1,0 +1,84 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dd3xfnv1tuwje"]
+
+[ext_resource type="Texture2D" uid="uid://cjnykdilaqa7j" path="res://Spells/Fireball/fireball1.png" id="1_83mtl"]
+[ext_resource type="Texture2D" uid="uid://brrtsnthm17an" path="res://Spells/Fireball/fireball2.png" id="2_dwa7c"]
+[ext_resource type="Texture2D" uid="uid://dpop2jejappdc" path="res://Spells/Fireball/fireball3.png" id="3_angdx"]
+[ext_resource type="Texture2D" uid="uid://1t1evj4a7d1m" path="res://Spells/Fireball/fireball4.png" id="4_folna"]
+[ext_resource type="Texture2D" uid="uid://cao4qnli75ye5" path="res://Spells/Fireball/fireball5.png" id="5_l2v3w"]
+[ext_resource type="Texture2D" uid="uid://bvefundn4vltu" path="res://Spells/Fireball/fireball6.png" id="6_4tkt2"]
+[ext_resource type="Texture2D" uid="uid://dj1dffidmglww" path="res://Spells/Fireball/fireball7.png" id="7_b4jw6"]
+[ext_resource type="Texture2D" uid="uid://ccyugbc7bmi8v" path="res://Spells/Fireball/fireball8.png" id="8_bl1v2"]
+[ext_resource type="Texture2D" uid="uid://c6u7djpe8yw2e" path="res://Spells/IceShards/ice-shard1.png" id="9_1maeh"]
+[ext_resource type="Texture2D" uid="uid://rx6vhidbn26w" path="res://Spells/IceShards/ice-shard2.png" id="10_pbfmb"]
+[ext_resource type="Texture2D" uid="uid://cbfvy3780ojs5" path="res://Spells/IceShards/ice-shard3.png" id="11_ja1pd"]
+[ext_resource type="Texture2D" uid="uid://cgcp61jnhraw7" path="res://Spells/Lightning/thunder1.png" id="12_nd1dq"]
+[ext_resource type="Texture2D" uid="uid://dliyysiuse1wy" path="res://Spells/Lightning/thunder2.png" id="13_q2oth"]
+[ext_resource type="Texture2D" uid="uid://dihtbe746may6" path="res://Spells/Lightning/thunder3.png" id="14_ucs2o"]
+[ext_resource type="Texture2D" uid="uid://dhmoj7fljtqhn" path="res://Spells/Lightning/thunder4.png" id="15_vwlti"]
+[ext_resource type="Texture2D" uid="uid://cptnoyydp1flh" path="res://Spells/Lightning/thunder5.png" id="16_6uubq"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_83mtl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dwa7c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_angdx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_folna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_l2v3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4tkt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_b4jw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bl1v2")
+}],
+"loop": 1,
+"name": &"fireball",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_1maeh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pbfmb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ja1pd")
+}],
+"loop": 1,
+"name": &"ice-shard",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_nd1dq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_q2oth")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ucs2o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_vwlti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_6uubq")
+}],
+"loop": 1,
+"name": &"lightning",
+"speed": 13.0
+}]

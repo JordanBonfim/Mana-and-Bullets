@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dycegt5fdtgus"]
+
+[ext_resource type="SpriteFrames" uid="uid://dd3xfnv1tuwje" path="res://spell_sprite_frames1.tres" id="1_2j8co"]
+[ext_resource type="Script" uid="uid://bx4xajvasepo4" path="res://00_global/player_hud/spells/hud_spell.gd" id="1_k50up"]
+[ext_resource type="Texture2D" uid="uid://5ljeiycc4x5f" path="res://00_global/player_hud/spells/moldura.png" id="1_lmk0j"]
+
+[node name="HudSpell" type="Control" unique_id=893380489]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_k50up")
+
+[node name="spell_sprite" type="AnimatedSprite2D" parent="." unique_id=393727751]
+visible = false
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("1_2j8co")
+animation = &"fireball"
+autoplay = "fireball"
+frame_progress = 0.6224824
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1256460644]
+scale = Vector2(2, 2)
+texture = ExtResource("1_lmk0j")

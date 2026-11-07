@@ -255,6 +255,8 @@ scale = Vector2(2, 2)
 visible = false
 
 [node name="Aim" parent="." unique_id=926235812 instance=ExtResource("11_yydhl")]
+z_index = 88
+z_as_relative = false
 scale = Vector2(0.4, 0.4)
 
 [node name="PauseScreen" parent="." unique_id=1770321638 instance=ExtResource("12_bekh1")]

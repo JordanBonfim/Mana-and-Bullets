@@ -1,88 +1,7 @@
 [gd_scene format=3 uid="uid://be1qoo4m3tvh8"]
 
 [ext_resource type="Script" uid="uid://djijue23wji32" path="res://Spells/spell_projectile.gd" id="1_kcfer"]
-[ext_resource type="Texture2D" uid="uid://cjnykdilaqa7j" path="res://Spells/Fireball/fireball1.png" id="2_7xuhp"]
-[ext_resource type="Texture2D" uid="uid://brrtsnthm17an" path="res://Spells/Fireball/fireball2.png" id="3_d2rlm"]
-[ext_resource type="Texture2D" uid="uid://dpop2jejappdc" path="res://Spells/Fireball/fireball3.png" id="4_pf40n"]
-[ext_resource type="Texture2D" uid="uid://1t1evj4a7d1m" path="res://Spells/Fireball/fireball4.png" id="5_taf4a"]
-[ext_resource type="Texture2D" uid="uid://cao4qnli75ye5" path="res://Spells/Fireball/fireball5.png" id="6_0yviy"]
-[ext_resource type="Texture2D" uid="uid://bvefundn4vltu" path="res://Spells/Fireball/fireball6.png" id="7_7ogsp"]
-[ext_resource type="Texture2D" uid="uid://dj1dffidmglww" path="res://Spells/Fireball/fireball7.png" id="8_kca17"]
-[ext_resource type="Texture2D" uid="uid://ccyugbc7bmi8v" path="res://Spells/Fireball/fireball8.png" id="9_gydyo"]
-[ext_resource type="Texture2D" uid="uid://c6u7djpe8yw2e" path="res://Spells/IceShards/ice-shard1.png" id="10_taf4a"]
-[ext_resource type="Texture2D" uid="uid://rx6vhidbn26w" path="res://Spells/IceShards/ice-shard2.png" id="11_0yviy"]
-[ext_resource type="Texture2D" uid="uid://cbfvy3780ojs5" path="res://Spells/IceShards/ice-shard3.png" id="12_7ogsp"]
-[ext_resource type="Texture2D" uid="uid://cgcp61jnhraw7" path="res://Spells/Lightning/thunder1.png" id="13_imx1j"]
-[ext_resource type="Texture2D" uid="uid://dliyysiuse1wy" path="res://Spells/Lightning/thunder2.png" id="14_skfsk"]
-[ext_resource type="Texture2D" uid="uid://dihtbe746may6" path="res://Spells/Lightning/thunder3.png" id="15_yo88d"]
-[ext_resource type="Texture2D" uid="uid://dhmoj7fljtqhn" path="res://Spells/Lightning/thunder4.png" id="16_dfdpp"]
-[ext_resource type="Texture2D" uid="uid://cptnoyydp1flh" path="res://Spells/Lightning/thunder5.png" id="17_pcmh3"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_bhunq"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_7xuhp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_d2rlm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_pf40n")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_taf4a")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_0yviy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_7ogsp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_kca17")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_gydyo")
-}],
-"loop": 1,
-"name": &"fireball",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_taf4a")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_0yviy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_7ogsp")
-}],
-"loop": 1,
-"name": &"ice-shard",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("13_imx1j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_skfsk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_yo88d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_dfdpp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_pcmh3")
-}],
-"loop": 1,
-"name": &"lightning",
-"speed": 13.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://dd3xfnv1tuwje" path="res://spell_sprite_frames1.tres" id="2_kcfer"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
 size = Vector2(20, 12)
@@ -93,7 +12,7 @@ script = ExtResource("1_kcfer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=219799833]
 position = Vector2(-1, -1)
-sprite_frames = SubResource("SpriteFrames_bhunq")
+sprite_frames = ExtResource("2_kcfer")
 animation = &"lightning"
 frame_progress = 0.51533633
 
