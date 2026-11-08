@@ -5,7 +5,9 @@ func display_number(value: float, position: Vector2, is_critical: bool = false):
 	var number = Label.new()
 	number.global_position = position
 	
-	number.text = str(value) if fmod(value, 1.0) != 0.0 else str(int(value))
+	#number.text = str(value) if fmod(value, 1.0) != 0.0 else str(int(value))
+	number.text = "%0.f" % value
+	
 	
 	number.z_index = 5
 	number.label_settings = LabelSettings.new()

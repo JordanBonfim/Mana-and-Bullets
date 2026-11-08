@@ -10,7 +10,7 @@ var ready_to_fire: bool = true
 
 
 func _ready() -> void:
-	base_max_hp = 20
+	base_max_hp = 4
 	base_damage_to_player = 1
 	base_xp_drop = 15
 
