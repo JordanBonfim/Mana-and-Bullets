@@ -33,6 +33,10 @@ func configure(index) -> void:
 			
 		2: #lightning
 			spell_sprite.play("lightning")
+		3: #lightning
+			spell_sprite.play("singularity")
+			
+			
 	spell_sprite.visible = true
 	if(spell != null and spell.has_method("get_cooldown") and spell_type != -1):
 		cooldown_label.text = ("%0.f" % spell.get_cooldown())

@@ -25,19 +25,31 @@ var animation_name: String = ""
 # Lightning
 @export var shocking_time_seconds: float = 0
 
+@onready var area_2d: Area2D = $Area2D
 
 
 func _ready() -> void:
 	match spell_type:
 		0:
 			animation_name = "fireball"
+			projectile_lifetime.wait_time = 1.0
+			
 		1: 
 			animation_name = "ice-shard"
+			projectile_lifetime.wait_time = 1.0
+			
 		2:
 			animation_name = "lightning"
+			projectile_lifetime.wait_time = 1.0
+		3:
+			animation_name = "singularity"
+			projectile_lifetime.wait_time = 6.0
+			area_2d.scale = area_2d.scale*2
+			animated_sprite_2d.scale=animated_sprite_2d.scale*2
+			
 			
 	animated_sprite_2d.play(animation_name)
-	
+	projectile_lifetime.start()
 	
 
 
@@ -65,6 +77,8 @@ func get_shocking_time() -> float:
 	return shocking_time_seconds
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	if(spell_type==3):
+		return
 	piercing_ammount-=1
 	if(piercing_ammount<=0):
 		if(spell_type==2):
@@ -72,3 +86,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			await animated_sprite_2d.animation_finished
 		queue_free()
 	
+
+
+func _on_projectile_lifetime_timeout() -> void:
+	queue_free()

@@ -22,7 +22,7 @@ var upgrades_selected : Array[int] = []
 	"Fire-ball",
 	"Ice-shard",
 	"Lightning",
-	"Venom"
+	"Singularity"
 ]
 var spells_selected : Array[int] = []
 
