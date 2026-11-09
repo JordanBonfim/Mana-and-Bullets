@@ -64,6 +64,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_R:
 			if(currentAmmo<magazine_size):
+				currentAmmo = 0 
 				if(reload_timer.is_stopped()):
 					animated_sprite_2d.play("reload")
 					reload_timer.start()
