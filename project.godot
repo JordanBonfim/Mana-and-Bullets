@@ -82,6 +82,7 @@ fire={
 2d_physics/layer_8="enemy_range"
 2d_physics/layer_9="enemy_projectiles"
 2d_physics/layer_10="spell_range"
+2d_physics/layer_11="attracting_areas"
 
 [physics]
 

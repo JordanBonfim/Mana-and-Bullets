@@ -25,8 +25,16 @@ var animation_name: String = ""
 # Lightning
 @export var shocking_time_seconds: float = 0
 
-@onready var area_2d: Area2D = $Area2D
+# Singularity
+@export var proc_damage: float = 4
 
+@onready var area_2d: Area2D = $Area2D
+@onready var proc_timer: Timer = $proc_timer
+@onready var pulling_area_2d: Area2D = $pulling_area2d
+@onready var cpu_particles_2d: CPUParticles2D = $pulling_area2d/CPUParticles2D
+
+
+var enemies_inside_area_damage: Array = []
 
 func _ready() -> void:
 	match spell_type:
@@ -44,8 +52,15 @@ func _ready() -> void:
 		3:
 			animation_name = "singularity"
 			projectile_lifetime.wait_time = 6.0
-			area_2d.scale = area_2d.scale*2
-			animated_sprite_2d.scale=animated_sprite_2d.scale*2
+			area_2d.scale = area_2d.scale*4
+			animated_sprite_2d.scale=animated_sprite_2d.scale*4
+			area_2d.monitorable = false
+			area_2d.monitoring = true
+			pulling_area_2d.monitorable = true
+			pulling_area_2d.monitoring = true
+			cpu_particles_2d.visible = true
+			
+			proc_timer.start()
 			
 			
 	animated_sprite_2d.play(animation_name)
@@ -78,6 +93,7 @@ func get_shocking_time() -> float:
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if(spell_type==3):
+		enemies_inside_area_damage.append(area.get_parent())
 		return
 	piercing_ammount-=1
 	if(piercing_ammount<=0):
@@ -90,3 +106,31 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_projectile_lifetime_timeout() -> void:
 	queue_free()
+
+
+func _on_proc_timer_timeout() -> void:
+	print("trying to proc")
+	if(enemies_inside_area_damage.size()>0):
+		print("enemies in range: ", enemies_inside_area_damage)
+		var enemy_index = randi_range(0, enemies_inside_area_damage.size()-1)
+		var enemy: Node2D = enemies_inside_area_damage[enemy_index]
+		if(enemy.has_method("take_damage")):
+			enemy.take_damage(proc_damage)
+		
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if(spell_type==3):
+		enemies_inside_area_damage.erase(area.get_parent())
+
+
+func _on_pulling_area_2d_area_entered(area: Area2D) -> void:
+	var enemy = area.get_parent()
+	if enemy.has_method("add_pulling_area"):
+		enemy.add_pulling_area(global_position)
+
+
+func _on_pulling_area_2d_area_exited(area: Area2D) -> void:
+	var enemy = area.get_parent()
+	if enemy.has_method("remove_pulling_area"):
+		enemy.remove_pulling_area(global_position)

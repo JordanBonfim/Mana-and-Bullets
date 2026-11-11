@@ -95,6 +95,7 @@ _data = {
 radius = 9.25
 
 [node name="CyanSlime" type="CharacterBody2D" unique_id=342270267]
+z_index = 24
 scale = Vector2(4, 4)
 collision_layer = 4
 collision_mask = 12

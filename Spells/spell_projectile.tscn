@@ -6,25 +6,57 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
 size = Vector2(20, 12)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_sjk5h"]
+
+[sub_resource type="Gradient" id="Gradient_sjk5h"]
+colors = PackedColorArray(0.5256821, 0.003171624, 0.87010896, 1, 0.69391036, 0.4730227, 1, 1)
+
 [node name="SpellProjectile" type="Node2D" unique_id=1219408482]
 scale = Vector2(2, 2)
 script = ExtResource("1_kcfer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=219799833]
 sprite_frames = ExtResource("2_kcfer")
-animation = &"singularity"
-frame_progress = 0.8798839
+animation = &"fireball"
 
 [node name="Projectile_lifetime" type="Timer" parent="." unique_id=41050234]
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1836409055]
-scale = Vector2(0.7, 0.7)
 collision_layer = 32
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1639962294]
 shape = SubResource("RectangleShape2D_bhunq")
 
+[node name="proc_timer" type="Timer" parent="." unique_id=1234194396]
+wait_time = 0.351
+
+[node name="pulling_area2d" type="Area2D" parent="." unique_id=2034468419]
+collision_layer = 1024
+collision_mask = 260
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pulling_area2d" unique_id=1906130447]
+scale = Vector2(14, 14)
+shape = SubResource("CircleShape2D_sjk5h")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="pulling_area2d" unique_id=1299719918]
+visible = false
+amount = 73
+lifetime = 1.79
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(0, 0)
+orbit_velocity_max = 1.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_sjk5h")
+
 [connection signal="timeout" from="Projectile_lifetime" to="." method="_on_projectile_lifetime_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="proc_timer" to="." method="_on_proc_timer_timeout"]
+[connection signal="area_entered" from="pulling_area2d" to="." method="_on_pulling_area_2d_area_entered"]
+[connection signal="area_exited" from="pulling_area2d" to="." method="_on_pulling_area_2d_area_exited"]

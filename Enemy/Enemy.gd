@@ -22,6 +22,8 @@ var xp_drop: float
 @export var quadratic_multiplier: float = 0.22
 @export var wave_number: int = 1
 
+var external_forces: Array[Vector2] = [Vector2.ZERO]
+var pulling_areas: Array[Vector2] = []
 #endregion
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -29,6 +31,8 @@ var xp_drop: float
 @onready var hit_flash_animation: AnimationPlayer = $HitFlashAnimation
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var damage_number_position: Node2D = $DamageNumberPosition
+
+
 
 var status_effects: Dictionary = {
 	"burning": 0.0, # seconds duration
@@ -42,11 +46,13 @@ var status_effects_ammount: Dictionary = {
 }
 var burning_damage_timer: float = 0.0
 
+@onready var cpu_particles_2d: CPUParticles2D = $pulling_area2d/CPUParticles2D
 
 func _ready() -> void:
 	animation_player.play("walk")
 	calculate_stats()
 	spawn_around_player()
+	
 
 
 func calculate_stats() -> void:
@@ -122,6 +128,10 @@ func move_towards_player() -> void:
 	update_facing_direction()
 
 	velocity = direction * speed
+	
+	for pull_area in pulling_areas:
+		direction = (pull_area - global_position).normalized()
+		velocity+=direction*400
 	move_and_slide()
 
 
@@ -154,6 +164,7 @@ func die() -> void:
 #func walk() -> void:
 	#animation_player.play("walk")
 
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
 	if parent.has_method("get_damage"):
@@ -180,3 +191,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				status_effects["shocking"] = parent.get_shocking_time()
 				shocking = true
 	
+	
+
+func add_pulling_area(position: Vector2):
+	pulling_areas.append(position)
+	
+func remove_pulling_area(position: Vector2):	
+	pulling_areas.erase(position)
