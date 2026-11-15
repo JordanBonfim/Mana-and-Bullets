@@ -1,7 +1,7 @@
 extends Node
 
 
-var player_weapon: int = 0
+var player_weapon: int = 1
 
 func set_player_weapon(weapon_index: int) -> void:
 	player_weapon = weapon_index

@@ -85,11 +85,11 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			camera_2d.zoom = clamp(camera_2d.zoom - Vector2(zoom_step, zoom_step), Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
-		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			camera_2d.zoom = clamp(camera_2d.zoom + Vector2(zoom_step, zoom_step), Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
+	#if event is InputEventMouseButton:
+		#if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			#camera_2d.zoom = clamp(camera_2d.zoom - Vector2(zoom_step, zoom_step), Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
+		#elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			#camera_2d.zoom = clamp(camera_2d.zoom + Vector2(zoom_step, zoom_step), Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
 
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE:
@@ -100,7 +100,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		## PARA DEBUG APENAS
 		## RETIRAR PARA EXPORTAR
 		## Controles de teste de HP e SPEED nas teclas - e +:
-		# Ctrl + tecla = altera SPEED | Shift + tecla = altera max_hp | Tecla pura = altera hp
+		## Ctrl + tecla = altera SPEED | Shift + tecla = altera max_hp | Tecla pura = altera hp
 		#elif event.keycode == KEY_MINUS or event.keycode == KEY_KP_SUBTRACT:
 			#if Input.is_key_pressed(KEY_CTRL):
 				#SPEED = max(0.0, SPEED - speed_step)
