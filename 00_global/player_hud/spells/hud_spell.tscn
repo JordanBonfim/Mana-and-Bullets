@@ -18,6 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://dihtbe746may6" path="res://Spells/Lightning/thunder3.png" id="15_7bvih"]
 [ext_resource type="Texture2D" uid="uid://dhmoj7fljtqhn" path="res://Spells/Lightning/thunder4.png" id="16_ldg6e"]
 [ext_resource type="Texture2D" uid="uid://cptnoyydp1flh" path="res://Spells/Lightning/thunder5.png" id="17_1jv11"]
+[ext_resource type="Texture2D" uid="uid://bx8bdng6fsxo3" path="res://Spells/singularity1.png" id="18_y7vqb"]
+[ext_resource type="Texture2D" uid="uid://bgsuvf7n07i7d" path="res://Spells/singularity2.png" id="19_jvawv"]
+[ext_resource type="Texture2D" uid="uid://daugpxwm003ct" path="res://Spells/singularity3.png" id="20_vbhwo"]
+[ext_resource type="Texture2D" uid="uid://c32iuoh3iecy6" path="res://Spells/singularity4.png" id="21_2k880"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k50up"]
 animations = [{
@@ -83,6 +87,23 @@ animations = [{
 "loop": 1,
 "name": &"lightning",
 "speed": 13.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_y7vqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_jvawv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_vbhwo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_2k880")
+}],
+"loop": 1,
+"name": &"singularity",
+"speed": 7.0
 }]
 
 [node name="HudSpell" type="Control" unique_id=893380489]
@@ -94,7 +115,8 @@ script = ExtResource("1_k50up")
 visible = false
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_k50up")
-animation = &"lightning"
+animation = &"singularity"
+frame_progress = 0.48460805
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1256460644]
 scale = Vector2(2, 2)

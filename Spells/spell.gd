@@ -51,6 +51,9 @@ func _ready() -> void:
 		2: # lightning
 			spell_cooldown = 8
 			spell_range.scale = spell_range.scale*2.5
+		3: # Singularity
+			spell_cooldown = 15
+			spell_range.scale = spell_range.scale*5
 			
 			
 	spell_timer.wait_time = spell_cooldown
@@ -108,6 +111,18 @@ func _process(delta: float) -> void:
 					lightning.projectile_damage = 20
 					lightning.projectile_speed = 0
 					get_tree().root.add_child(lightning)
+					
+				3: # Singularity
+					var singularity = SPELL_PROJECTILE.instantiate()
+					# FAZER ESCOLHER LUGAR ALEATÓRIO DA TELA
+					singularity.global_position = enemy_position
+					
+					
+					singularity.spell_type = spell_type
+					#singularity.shocking_time_seconds = shocking_time_seconds
+					singularity.projectile_damage = 2
+					singularity.projectile_speed = 0
+					get_tree().root.add_child(singularity)
 					
 					
 					

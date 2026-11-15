@@ -16,6 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://dihtbe746may6" path="res://Spells/Lightning/thunder3.png" id="14_ucs2o"]
 [ext_resource type="Texture2D" uid="uid://dhmoj7fljtqhn" path="res://Spells/Lightning/thunder4.png" id="15_vwlti"]
 [ext_resource type="Texture2D" uid="uid://cptnoyydp1flh" path="res://Spells/Lightning/thunder5.png" id="16_6uubq"]
+[ext_resource type="Texture2D" uid="uid://bx8bdng6fsxo3" path="res://Spells/singularity1.png" id="17_l2v3w"]
+[ext_resource type="Texture2D" uid="uid://bgsuvf7n07i7d" path="res://Spells/singularity2.png" id="18_4tkt2"]
+[ext_resource type="Texture2D" uid="uid://daugpxwm003ct" path="res://Spells/singularity3.png" id="19_b4jw6"]
+[ext_resource type="Texture2D" uid="uid://c32iuoh3iecy6" path="res://Spells/singularity4.png" id="20_bl1v2"]
 
 [resource]
 animations = [{
@@ -81,4 +85,21 @@ animations = [{
 "loop": 1,
 "name": &"lightning",
 "speed": 13.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_l2v3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_4tkt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_b4jw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_bl1v2")
+}],
+"loop": 1,
+"name": &"singularity",
+"speed": 7.0
 }]

@@ -97,6 +97,7 @@ _data = {
 }
 
 [node name="UltraMage" type="CharacterBody2D" unique_id=342270267]
+z_index = 25
 scale = Vector2(4, 4)
 collision_layer = 4
 collision_mask = 44
