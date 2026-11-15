@@ -66,6 +66,8 @@ func _ready() -> void:
 	Messages.spell_selected.connect(add_spell)
 	Messages.add_health.connect(add_health)
 	
+	weapon_selected = Messages.get_player_weapon()
+	
 	var weapon_instance = SHOTGUN.instantiate()
 	match weapon_selected:
 		0:

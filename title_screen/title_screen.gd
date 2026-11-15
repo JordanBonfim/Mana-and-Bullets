@@ -15,6 +15,9 @@ extends CanvasLayer
 @onready var resolution_options: OptionButton = %ResolutionOptions
 @onready var window_mode_options: OptionButton = %WindowModeOptions
 
+@onready var weapon_selected_sprite: AnimatedSprite2D = $weapon_selected_sprite
+@onready var machine_pistol_select: Button = $HBoxContainer/machine_pistol_select
+@onready var shotgun_select: Button = $HBoxContainer/shotgun_select
 
 var current_window_mode = "windowed"
 
@@ -30,6 +33,13 @@ var resolutions: Array[Vector2i] = [
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
+	var player_weapon = Messages.get_player_weapon()
+	match player_weapon:
+		0:
+			weapon_selected_sprite.play("shotgun")
+		1: #machine pistol
+			weapon_selected_sprite.play("machine_pistol")
+			
 	for resolution in resolutions:
 		resolution_options.add_item(
 			str(resolution.x) + "x" + str(resolution.y)
@@ -107,3 +117,15 @@ func show_main_menu() -> void:
 
 func _on_exit_game_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_machine_pistol_select_pressed() -> void:
+	Messages.set_player_weapon(1)
+	weapon_selected_sprite.play("machine_pistol")
+	pass # Replace with function body.
+
+
+func _on_shotgun_select_pressed() -> void:
+	Messages.set_player_weapon(0)
+	weapon_selected_sprite.play("shotgun")
+	pass # Replace with function body.

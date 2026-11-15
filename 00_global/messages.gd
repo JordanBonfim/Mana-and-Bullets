@@ -1,5 +1,14 @@
 extends Node
 
+
+var player_weapon: int = 0
+
+func set_player_weapon(weapon_index: int) -> void:
+	player_weapon = weapon_index
+
+func get_player_weapon() -> int:
+	return player_weapon
+	
 # PLAYER HEALTH
 @warning_ignore("unused_signal")
 signal player_health_changed(hp:float, max_hp:float)
