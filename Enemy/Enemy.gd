@@ -147,7 +147,7 @@ func die() -> void:
 	hurt_box.set_deferred("disabled", true)
 	sprite_2d.visible = false
 
-	#Messages.add_xp.emit(xp_drop)
+	Messages.add_xp.emit(xp_drop)
 	queue_free()
 
 

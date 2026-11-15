@@ -6,7 +6,7 @@ func _ready() -> void:
 	base_max_hp = 10
 	hp = base_max_hp
 	base_damage_to_player = 1
-	base_xp_drop = 10
+	base_xp_drop = 20
 
 	super._ready()
 
