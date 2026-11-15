@@ -12,7 +12,7 @@ var random = RandomNumberGenerator.new()
 const upgrades : Array[String] = [
 	"+1 Piercing shot",
 	"5% more fire-rate",
-	"10% damage increse",
+	"10% damage increase",	
 	"+1 projectiles"
 	]
 var upgrades_selected : Array[int] = []

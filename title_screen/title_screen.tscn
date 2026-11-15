@@ -245,7 +245,7 @@ position = Vector2(384, 671.00006)
 scale = Vector2(11.650002, 11.650002)
 sprite_frames = SubResource("SpriteFrames_bhunq")
 autoplay = "default"
-frame_progress = 0.27698696
+frame_progress = 0.19326197
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Control" unique_id=1358033021]
 texture_filter = 1

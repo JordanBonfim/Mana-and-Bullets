@@ -94,33 +94,36 @@ func _unhandled_input(event: InputEvent) -> void:
 			Messages.game_paused.emit()
 			get_tree().paused = true
 			
-		# Controles de teste de HP e SPEED nas teclas - e +:
+	
+		## PARA DEBUG APENAS
+		## RETIRAR PARA EXPORTAR
+		## Controles de teste de HP e SPEED nas teclas - e +:
 		# Ctrl + tecla = altera SPEED | Shift + tecla = altera max_hp | Tecla pura = altera hp
-		elif event.keycode == KEY_MINUS or event.keycode == KEY_KP_SUBTRACT:
-			if Input.is_key_pressed(KEY_CTRL):
-				SPEED = max(0.0, SPEED - speed_step)
-				print("SPEED TESTE:", SPEED)
-			elif Input.is_key_pressed(KEY_SHIFT):
-				max_hp -= 10
-			else:
-				print("LIFE:", hp)
-				hp -= 2
-		elif event.keycode == KEY_EQUAL or event.keycode == KEY_KP_ADD:
-			if Input.is_key_pressed(KEY_CTRL):
-				SPEED += speed_step
-				print("SPEED TESTE:", SPEED)
-			elif Input.is_key_pressed(KEY_SHIFT):
-				max_hp += 10
-			else:
-				print("LIFE:", hp)
-				hp += 2
-				
-		elif event.keycode == KEY_9:
-			Messages.increase_wave.emit(1)
-		elif event.keycode == KEY_E:
-			add_xp(10)
-		elif event.keycode == KEY_F:
-			add_xp(100)
+		#elif event.keycode == KEY_MINUS or event.keycode == KEY_KP_SUBTRACT:
+			#if Input.is_key_pressed(KEY_CTRL):
+				#SPEED = max(0.0, SPEED - speed_step)
+				#print("SPEED TESTE:", SPEED)
+			#elif Input.is_key_pressed(KEY_SHIFT):
+				#max_hp -= 10
+			#else:
+				#print("LIFE:", hp)
+				#hp -= 2
+		#elif event.keycode == KEY_EQUAL or event.keycode == KEY_KP_ADD:
+			#if Input.is_key_pressed(KEY_CTRL):
+				#SPEED += speed_step
+				#print("SPEED TESTE:", SPEED)
+			#elif Input.is_key_pressed(KEY_SHIFT):
+				#max_hp += 10
+			#else:
+				#print("LIFE:", hp)
+				#hp += 2
+				#
+		#elif event.keycode == KEY_9:
+			#Messages.increase_wave.emit(1)
+		#elif event.keycode == KEY_E:
+			#add_xp(5)
+		#elif event.keycode == KEY_F:
+			#add_xp(100)
 
 
 func _physics_process(_delta: float) -> void:
