@@ -1,4 +1,3 @@
-
 extends Weapon
 
 @export var magazine_size: int = 9

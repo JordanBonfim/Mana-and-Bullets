@@ -2,13 +2,46 @@
 
 [ext_resource type="Texture2D" uid="uid://c0k7lsahhprnw" path="res://weapons/shotgun/shotgun.png" id="1_0kfn4"]
 [ext_resource type="Script" uid="uid://deu8unoncdi3y" path="res://weapons/shotgun/shotgun.gd" id="2_rxqsx"]
+[ext_resource type="Texture2D" uid="uid://by5ivs1nk6sac" path="res://weapons/reload/reload1.png" id="4_2taoa"]
 [ext_resource type="AudioStream" uid="uid://c1tjcj6i7g5m7" path="res://Audio/shotgun_fire.wav" id="4_ggjqm"]
+[ext_resource type="Texture2D" uid="uid://c0q6f5t0tt6xr" path="res://weapons/reload/reload2.png" id="5_0eq7a"]
+[ext_resource type="Texture2D" uid="uid://spjfwcl23lrp" path="res://weapons/reload/reload3.png" id="6_6v52m"]
+[ext_resource type="Texture2D" uid="uid://brb7vdv4k5uqw" path="res://weapons/reload/reload4.png" id="7_t2jr7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhunq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0kfn4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2taoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0eq7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6v52m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_t2jr7")
+}],
+"loop": 1,
+"name": &"reload",
+"speed": 6.0
+}]
 
 [node name="Shotgun" type="Node2D" unique_id=1305605320]
 visibility_layer = 8
 script = ExtResource("2_rxqsx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=870953946]
+visible = false
 position = Vector2(6, -2)
 texture = ExtResource("1_0kfn4")
 
@@ -19,3 +52,13 @@ position = Vector2(19, -3)
 
 [node name="firing_soundplayer" type="AudioStreamPlayer" parent="." unique_id=542170107]
 stream = ExtResource("4_ggjqm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=333286656]
+position = Vector2(6, -2)
+sprite_frames = SubResource("SpriteFrames_bhunq")
+animation = &"reload"
+
+[node name="reload_timer" type="Timer" parent="." unique_id=693374846]
+one_shot = true
+
+[connection signal="timeout" from="reload_timer" to="." method="_on_reload_timer_timeout"]

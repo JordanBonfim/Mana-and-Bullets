@@ -37,8 +37,10 @@ func _ready() -> void:
 	match player_weapon:
 		0:
 			weapon_selected_sprite.play("shotgun")
+			weapon_selected_sprite.scale = Vector2(8.0, 8.0)
 		1: #machine pistol
 			weapon_selected_sprite.play("machine_pistol")
+			weapon_selected_sprite.scale = Vector2(5.0, 5.0)
 			
 	for resolution in resolutions:
 		resolution_options.add_item(
@@ -120,12 +122,17 @@ func _on_exit_game_button_pressed() -> void:
 
 
 func _on_machine_pistol_select_pressed() -> void:
-	Messages.set_player_weapon(1)
-	weapon_selected_sprite.play("machine_pistol")
-	pass # Replace with function body.
+	if(Messages.get_player_weapon() != 1):
+		Messages.set_player_weapon(1)
+		weapon_selected_sprite.play("machine_pistol")
+		weapon_selected_sprite.scale = Vector2(5.0, 5.0)
 
 
 func _on_shotgun_select_pressed() -> void:
-	Messages.set_player_weapon(0)
-	weapon_selected_sprite.play("shotgun")
-	pass # Replace with function body.
+	if(Messages.get_player_weapon() != 0):
+		Messages.set_player_weapon(0)
+		weapon_selected_sprite.play("shotgun")
+		#player_weapon = Messages.get_player_weapon()
+		weapon_selected_sprite.scale = Vector2(8.0, 8.0)
+		
+	pass # Replace with functon body.

@@ -408,10 +408,10 @@ scale = Vector2(7.47561, 7.47561)
 texture = ExtResource("10_jabur")
 
 [node name="weapon_selected_sprite" type="AnimatedSprite2D" parent="." unique_id=2053595310]
-position = Vector2(443.99997, 716)
-scale = Vector2(5.7656255, 5.7656255)
+position = Vector2(451.00003, 708)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_riqys")
-animation = &"shotgun"
+animation = &"machine_pistol"
 autoplay = "machine_pistol"
 
 [connection signal="pressed" from="Control/MainMenu/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
