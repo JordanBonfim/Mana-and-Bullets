@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g3udyb8s4ff0"
-path="res://.godot/imported/upgrade_card_back.png-b63049bfb686454948fcbdfd792dfa5e.ctex"
+uid="uid://bdv5xp46fueg1"
+path="res://.godot/imported/damageUPG.png-791885a0547d749751d0ba75743bc2f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://upgrade_card/upgrade_card_back.png"
-dest_files=["res://.godot/imported/upgrade_card_back.png-b63049bfb686454948fcbdfd792dfa5e.ctex"]
+source_file="res://upgrade_card/sprites/damageUPG.png"
+dest_files=["res://.godot/imported/damageUPG.png-791885a0547d749751d0ba75743bc2f4.ctex"]
 
 [params]
 
