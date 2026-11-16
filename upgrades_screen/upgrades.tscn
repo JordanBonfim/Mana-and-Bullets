@@ -36,13 +36,10 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 alignment = 1
 
 [node name="UpgradeCard" parent="Control/HBoxContainer" unique_id=2040108448 instance=ExtResource("1_jetx8")]
-visible = false
 layout_mode = 2
 
 [node name="UpgradeCard2" parent="Control/HBoxContainer" unique_id=1009723317 instance=ExtResource("1_jetx8")]
-visible = false
 layout_mode = 2
 
 [node name="UpgradeCard3" parent="Control/HBoxContainer" unique_id=1875128900 instance=ExtResource("1_jetx8")]
-visible = false
 layout_mode = 2
